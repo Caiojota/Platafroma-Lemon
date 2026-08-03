@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SESMT | Plataforma de Gestão de Segurança do Trabalho</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSI2MCAzMCAxNzAgMTUwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZGVmcz48Y2xpcFBhdGggaWQ9ImxlbW9uQ2xpcEZhdiI+PGVsbGlwc2UgY3g9IjE0NSIgY3k9IjExNSIgcng9IjYyIiByeT0iNTIiLz48L2NsaXBQYXRoPjwvZGVmcz4KPGVsbGlwc2UgY3g9IjE0NSIgY3k9IjExNSIgcng9IjYyIiByeT0iNTIiIGZpbGw9IiNmYWE2MWEiLz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2xlbW9uQ2xpcEZhdikiIHN0cm9rZT0iI2U1ZDFhYiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjUiPgo8bGluZSB4MT0iODAiIHkxPSI4MCIgeDI9IjIxMCIgeTI9Ijk1Ii8+PGxpbmUgeDE9IjgwIiB5MT0iOTUiIHgyPSIyMTAiIHkyPSIxMTAiLz4KPGxpbmUgeDE9IjgwIiB5MT0iMTEwIiB4Mj0iMjEwIiB5Mj0iMTI1Ii8+PGxpbmUgeDE9IjgwIiB5MT0iMTI1IiB4Mj0iMjEwIiB5Mj0iMTQwIi8+CjxsaW5lIHgxPSI4MCIgeTE9IjE0MCIgeDI9IjIxMCIgeTI9IjE1NSIvPjwvZz4KPGVsbGlwc2UgY3g9IjgwIiBjeT0iMTE1IiByeD0iNyIgcnk9IjEwIiBmaWxsPSIjZmFhNjFhIi8+CjxlbGxpcHNlIGN4PSIyMTAiIGN5PSIxMTUiIHJ4PSI3IiByeT0iMTAiIGZpbGw9IiNmYWE2MWEiLz4KPHBhdGggZD0iTTE0NSA0NSBDIDE3MiA0OSwgMTg1IDY1LCAxODUgNjUgQyAxODUgOTIsIDE2OCAxMDgsIDE0NSAxMTQgQyAxMjIgMTA4LCAxMDUgOTIsIDEwNSA2NSBDIDEwNSA2NSwgMTE4IDQ5LCAxNDUgNDUgWiIgZmlsbD0iIzAwYjI2MiIvPgo8cmVjdCB4PSIxMzkiIHk9IjcwIiB3aWR0aD0iMTIiIGhlaWdodD0iMjgiIHJ4PSIyIiBmaWxsPSIjZWZlMWQzIiBvcGFjaXR5PSIwLjkiLz4KPHJlY3QgeD0iMTMxIiB5PSI3OCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjEyIiByeD0iMiIgZmlsbD0iI2VmZTFkMyIgb3BhY2l0eT0iMC45Ii8+Cjwvc3ZnPg==">
 
 <!-- Open Sans (fonte de apoio/leitura, disponível via Google Fonts) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -958,6 +959,29 @@ tbody tr:hover{background:#fbf6ee;}
 .pend-mini-card .n{font-family:var(--f-heading); font-size:24px; font-weight:700; color:var(--marrom-esc);}
 .pend-mini-card .l{font-family:var(--f-mono); font-size:10px; text-transform:uppercase; letter-spacing:.3px; color:var(--areia-esc); margin-top:2px;}
 
+/* ---- Estrutura Operacional: lista de itens (setores, funções, BPs, gerentes) ---- */
+.insp-add-item{display:flex; gap:8px; margin-bottom:14px;}
+.insp-add-item input{flex:1; padding:9px 12px; border:1.5px solid var(--areia-cla); border-radius:8px; font-family:inherit; font-size:13px; color:var(--marrom-esc); background:var(--branco);}
+.insp-add-item input:focus{outline:none; border-color:var(--verde-viv);}
+.estrutura-lista{display:flex; flex-direction:column; gap:7px; max-height:280px; overflow-y:auto;}
+.admin-item-row{
+  display:flex; align-items:center; gap:10px;
+  background:var(--branco); border:1px solid var(--areia-cla); border-radius:9px;
+  padding:8px 10px; font-size:13px; color:var(--marrom-esc);
+}
+.admin-item-row .avatar-mini{
+  width:26px; height:26px; border-radius:50%; flex:none;
+  background:var(--verde-esc); color:#fff; font-family:var(--f-mono); font-weight:700; font-size:11px;
+  display:flex; align-items:center; justify-content:center;
+}
+.admin-item-row .txt{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.admin-item-row .del-btn{
+  background:none; border:none; color:var(--vermelho); font-family:var(--f-mono);
+  font-size:10.5px; text-transform:uppercase; letter-spacing:.3px; cursor:pointer; padding:5px 9px; border-radius:6px; flex:none;
+}
+.admin-item-row .del-btn:hover{background:#fdecea;}
+.estrutura-vazio{color:var(--areia-esc); font-size:12.5px; padding:6px 2px;}
+
 /* ---- Agenda: grades semanal e mensal ---- */
 .agenda-semana-grid{display:grid; grid-template-columns:110px repeat(5,1fr); gap:6px;}
 .agenda-mes-grid{display:grid; grid-template-columns:repeat(7,1fr); gap:6px;}
@@ -966,7 +990,9 @@ tbody tr:hover{background:#fbf6ee;}
 .agenda-semana-cell.fim-de-semana{background:#f2ece0; color:var(--areia-esc);}
 .avc-vazio{color:var(--areia-esc); font-size:11px;}
 
-.agenda-visita-card{background:var(--branco); border-left:3px solid var(--verde-viv); border-radius:6px; padding:7px 9px; margin-bottom:6px; text-align:left; box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.agenda-visita-card{position:relative; background:var(--branco); border-left:3px solid var(--verde-viv); border-radius:6px; padding:7px 9px; margin-bottom:6px; text-align:left; box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.avc-foto{position:absolute; top:4px; right:4px; width:16px; height:16px; border-radius:50%; object-fit:cover; border:1px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,.08);}
+.avc-foto-iniciais{background:var(--verde-esc); color:#fff; font-size:6.5px; font-weight:700; display:flex; align-items:center; justify-content:center; font-family:var(--f-mono);}
 .agenda-visita-card.pendente{border-left-color:var(--laranja);}
 .agenda-visita-card .avc-unidade{font-weight:700; font-size:11.5px; color:var(--marrom-esc); line-height:1.3;}
 .agenda-visita-card .avc-nome{font-size:11px; color:var(--terracota); margin-top:2px; font-weight:600;}
@@ -1008,20 +1034,9 @@ tbody tr:hover{background:#fbf6ee;}
         <div class="brand-logo-lemon">
           <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" role="img">
             <title>Plataforma Lemon</title>
-            <defs><clipPath id="lemonClipLoginW"><ellipse cx="145" cy="115" rx="62" ry="52"/></clipPath></defs>
-            <ellipse cx="145" cy="115" rx="62" ry="52" fill="#faa61a"/>
-            <g clip-path="url(#lemonClipLoginW)" stroke="#e5d1ab" stroke-width="2" opacity="0.5">
-              <line x1="80" y1="80" x2="210" y2="95"/>
-              <line x1="80" y1="95" x2="210" y2="110"/>
-              <line x1="80" y1="110" x2="210" y2="125"/>
-              <line x1="80" y1="125" x2="210" y2="140"/>
-              <line x1="80" y1="140" x2="210" y2="155"/>
-            </g>
-            <ellipse cx="80" cy="115" rx="7" ry="10" fill="#faa61a"/>
-            <ellipse cx="210" cy="115" rx="7" ry="10" fill="#faa61a"/>
-            <path d="M145 45 C 172 49, 185 65, 185 65 C 185 92, 168 108, 145 114 C 122 108, 105 92, 105 65 C 105 65, 118 49, 145 45 Z" fill="#00b262"/>
-            <rect x="139" y="70" width="12" height="28" rx="2" fill="#efe1d3" opacity="0.9"/>
-            <rect x="131" y="78" width="28" height="12" rx="2" fill="#efe1d3" opacity="0.9"/>
+            <ellipse cx="145" cy="118" rx="58" ry="50" fill="#faa61a"/>
+            <path d="M145 55 C 170 58, 184 75, 184 75 C 182 98, 166 112, 145 118 C 124 112, 108 98, 106 75 C 106 75, 120 58, 145 55 Z" fill="#00b262"/>
+            <ellipse cx="120" cy="100" rx="18" ry="11" fill="#ffe6b3" opacity="0.5" transform="rotate(-25 120 100)"/>
             <text x="250" y="105" font-size="20" font-weight="500" fill="#9f8167" font-family="'Open Sans', sans-serif" letter-spacing="2">plataforma</text>
             <text x="248" y="160" font-size="62" font-weight="500" fill="#a15a33" font-family="'Open Sans', sans-serif">lemon</text>
           </svg>
@@ -1063,20 +1078,9 @@ tbody tr:hover{background:#fbf6ee;}
       <div class="brand-block">
         <div class="ic-lemon">
           <svg viewBox="60 30 170 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Plataforma Lemon">
-            <defs><clipPath id="lemonClipHeader"><ellipse cx="145" cy="115" rx="62" ry="52"/></clipPath></defs>
-            <ellipse cx="145" cy="115" rx="62" ry="52" fill="#faa61a"/>
-            <g clip-path="url(#lemonClipHeader)" stroke="#e5d1ab" stroke-width="2" opacity="0.5">
-              <line x1="80" y1="80" x2="210" y2="95"/>
-              <line x1="80" y1="95" x2="210" y2="110"/>
-              <line x1="80" y1="110" x2="210" y2="125"/>
-              <line x1="80" y1="125" x2="210" y2="140"/>
-              <line x1="80" y1="140" x2="210" y2="155"/>
-            </g>
-            <ellipse cx="80" cy="115" rx="7" ry="10" fill="#faa61a"/>
-            <ellipse cx="210" cy="115" rx="7" ry="10" fill="#faa61a"/>
-            <path d="M145 45 C 172 49, 185 65, 185 65 C 185 92, 168 108, 145 114 C 122 108, 105 92, 105 65 C 105 65, 118 49, 145 45 Z" fill="#00b262"/>
-            <rect x="139" y="70" width="12" height="28" rx="2" fill="#efe1d3" opacity="0.9"/>
-            <rect x="131" y="78" width="28" height="12" rx="2" fill="#efe1d3" opacity="0.9"/>
+            <ellipse cx="145" cy="118" rx="58" ry="50" fill="#faa61a"/>
+            <path d="M145 55 C 170 58, 184 75, 184 75 C 182 98, 166 112, 145 118 C 124 112, 108 98, 106 75 C 106 75, 120 58, 145 55 Z" fill="#00b262"/>
+            <ellipse cx="120" cy="100" rx="18" ry="11" fill="#ffe6b3" opacity="0.5" transform="rotate(-25 120 100)"/>
           </svg>
         </div>
         <div class="ic-hortifruti"><img src="data:image/png;base64,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" alt="Hortifruti Natural da Terra"></div>
@@ -1099,7 +1103,6 @@ tbody tr:hover{background:#fbf6ee;}
 
     <!-- ABAS -->
     <nav class="app-tabs" id="nav-list">
-      <a href="#" class="nav-item" data-view="dashboard"><span class="ic">▣</span> Dashboard</a>
       <a href="#" class="nav-item" data-view="lancamento"><span class="ic">✎</span> Acidentes e Incidentes</a>
       <a href="#" class="nav-item" data-view="inspecoes"><span class="ic">☑</span> Inspeções</a>
       <a href="#" class="nav-item" data-view="agenda"><span class="ic">📅</span> Agenda</a>
@@ -1110,12 +1113,20 @@ tbody tr:hover{background:#fbf6ee;}
     <main class="content">
 
       <!-- ============ DASHBOARD ============ -->
-      <section class="view active" id="view-dashboard">
+      <section class="view active" id="view-lancamento">
         <div class="topbar">
-          <div>
-            <span class="eyebrow">visão geral</span>
-            <h2>Dashboard de Acidentes de Trabalho</h2>
-          </div>
+          <div><span class="eyebrow">registro e acompanhamento</span><h2>Acidentes e Incidentes</h2></div>
+        </div>
+
+        <div class="insp-subnav">
+          <button type="button" class="insp-tab active" data-sub="indicadores" onclick="mostrarSubAcidentes('indicadores')">Indicadores</button>
+          <button type="button" class="insp-tab" data-sub="registro" onclick="mostrarSubAcidentes('registro')">Registro e Análise</button>
+        </div>
+
+        <!-- SUB: INDICADORES -->
+        <div class="insp-sub active" id="acidentes-sub-indicadores">
+<div class="topbar" style="margin-bottom:16px;">
+          <div><span class="eyebrow">visão geral</span><h2 style="font-size:19px;">Indicadores</h2></div>
           <div style="display:flex; align-items:center; gap:10px;">
             <div class="pill" id="pill-total">0 acidentes no período</div>
             <button type="button" class="btn-secondary" onclick="exportarDashboardPPT()">📊 Exportar em PPT</button>
@@ -1263,56 +1274,23 @@ tbody tr:hover{background:#fbf6ee;}
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- ============ LANÇAMENTO DE DADOS ============ -->
-      <section class="view" id="view-lancamento">
-        <div class="topbar">
-          <div><span class="eyebrow">registro e acompanhamento</span><h2>Acidentes e Incidentes</h2></div>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button type="button" class="btn-primary inline" onclick="toggleNovoRegistroPanel()">+ Novo registro</button>
-            <button type="button" class="btn-secondary" onclick="toggleUploadPanel()">⇪ Importar planilha (Excel)</button>
-            <button type="button" class="btn-secondary" onclick="toggleFichaAnalisePanel()">📋 Ficha de análise de acidente</button>
-          </div>
+      
         </div>
 
-        <!-- PAINEL DE UPLOAD (oculto por padrão) -->
-        <div id="painel-upload" style="display:none;">
-          <div class="card" style="margin-bottom:18px;">
-            <h3>Como importar</h3>
-            <span class="sub">1. Baixe o modelo · 2. Preencha uma linha por acidente · 3. Envie o arquivo preenchido abaixo</span>
-            <div class="template-links">
-              <button class="btn-secondary" onclick="baixarModelo()">⬇ Baixar planilha modelo (.xlsx)</button>
+        <!-- SUB: REGISTRO E ANÁLISE -->
+        <div class="insp-sub" id="acidentes-sub-registro">
+          <div class="topbar" style="margin-bottom:16px;">
+            <div></div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button type="button" class="btn-primary inline" onclick="toggleNovoRegistroPanel()">+ Nova Análise de Acidente</button>
+              <button type="button" class="btn-secondary" onclick="toggleFichaAnalisePanel()">📋 Ficha de análise de acidente</button>
             </div>
           </div>
 
-          <div class="upload-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
-            <div class="icon">⇪</div>
-            <h3>Clique para selecionar ou arraste o arquivo aqui</h3>
-            <p>Formatos aceitos: .xlsx, .xls, .csv</p>
-            <input type="file" id="file-input" accept=".xlsx,.xls,.csv" style="display:none">
-          </div>
-
-          <div class="section-title"><span>Pré-visualização do arquivo</span><div class="ln"></div></div>
-          <div class="card" style="margin-bottom:18px;">
-            <span class="sub" id="upload-status">Nenhum arquivo carregado ainda.</span>
-            <div class="table-wrap" style="margin-top:10px;">
-              <table>
-                <thead id="tbl-preview-head"></thead>
-                <tbody id="tbl-preview-body"></tbody>
-              </table>
-            </div>
-            <div class="form-actions" id="upload-actions" style="display:none;">
-              <button class="btn-primary inline" onclick="confirmarImportacao()">Confirmar importação</button>
-              <button class="btn-secondary" onclick="cancelarImportacao()">Cancelar</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- PAINEL DE NOVO REGISTRO (oculto por padrão) -->
+<!-- PAINEL DE NOVO REGISTRO (oculto por padrão) -->
         <div id="painel-novo-registro" style="display:none;">
         <div class="form-card">
-          <h3 style="margin-bottom:16px;">Novo registro de acidente</h3>
+          <h3 style="margin-bottom:16px;">Nova análise de acidente</h3>
           <form id="form-acidente" onsubmit="return salvarAcidente(event)">
             <div class="form-grid">
               <div class="field"><label>Data do acidente</label><input required type="date" id="in-data"></div>
@@ -1370,7 +1348,8 @@ tbody tr:hover{background:#fbf6ee;}
         </div>
         </div>
 
-        <!-- PAINEL DA FICHA DE ANÁLISE DE ACIDENTE (oculto por padrão) -->
+        
+<!-- PAINEL DA FICHA DE ANÁLISE DE ACIDENTE (oculto por padrão) -->
         <div id="painel-ficha-analise" style="display:none;">
           <div class="form-card">
             <h3 style="margin-bottom:6px;">Ficha de acompanhamento da análise de acidente de trabalho</h3>
@@ -1406,7 +1385,8 @@ tbody tr:hover{background:#fbf6ee;}
           </div>
         </div>
 
-        <div class="section-title"><span>Últimos lançamentos</span><div class="ln"></div></div>
+        
+<div class="section-title"><span>Últimos lançamentos</span><div class="ln"></div></div>
         <div class="card">
           <div class="table-wrap">
             <table>
@@ -1414,6 +1394,8 @@ tbody tr:hover{background:#fbf6ee;}
               <tbody id="tbl-lancamentos"></tbody>
             </table>
           </div>
+        </div>
+      
         </div>
       </section>
 
@@ -1560,6 +1542,7 @@ tbody tr:hover{background:#fbf6ee;}
           <button type="button" class="insp-tab" data-sub="semanal" onclick="mostrarSubAgenda('semanal')">Visão Semanal</button>
           <button type="button" class="insp-tab" data-sub="mensal" onclick="mostrarSubAgenda('mensal')">Visão Mensal</button>
           <button type="button" class="insp-tab" data-sub="aprovacoes" onclick="mostrarSubAgenda('aprovacoes')">Aprovações</button>
+          <button type="button" class="insp-tab" data-sub="indicadores" onclick="mostrarSubAgenda('indicadores')">Indicadores</button>
         </div>
 
         <!-- MINHA AGENDA -->
@@ -1629,6 +1612,67 @@ tbody tr:hover{background:#fbf6ee;}
             </div>
           </div>
         </div>
+
+        <!-- INDICADORES (visível para Administrador/Coordenador) -->
+        <div class="insp-sub" id="agenda-sub-indicadores">
+          <div id="agenda-indicadores-sem-permissao" style="display:none; padding:30px; text-align:center; color:var(--areia-esc);">
+            Apenas Administradores ou Coordenadores podem ver os indicadores de visitas.
+          </div>
+          <div id="agenda-indicadores-conteudo">
+            <div class="filters">
+              <div class="f-group">
+                <label>De</label>
+                <input type="date" id="ag-ind-de">
+              </div>
+              <div class="f-group">
+                <label>Até</label>
+                <input type="date" id="ag-ind-ate">
+              </div>
+              <div class="f-group">
+                <label>Profissional</label>
+                <select id="ag-ind-profissional"><option value="">Todos</option></select>
+              </div>
+              <button class="btn-clear" onclick="limparFiltrosAgendaIndicadores()">Limpar filtros</button>
+            </div>
+
+            <div class="kpi-row">
+              <div class="kpi k1"><div class="lbl">Total de visitas</div><div class="val" id="agi-kpi-total">0</div><span class="foot" id="agi-kpi-total-foot">—</span></div>
+              <div class="kpi k2"><div class="lbl">Check-ins realizados</div><div class="val" id="agi-kpi-checkin">0</div><span class="foot">Visitas com check-in registrado</span></div>
+              <div class="kpi k4"><div class="lbl">Check-outs realizados</div><div class="val" id="agi-kpi-checkout">0</div><span class="foot">Visitas concluídas com check-out</span></div>
+              <div class="kpi k5"><div class="lbl">Relatórios de inspeção</div><div class="val" id="agi-kpi-relatorios">0</div><span class="foot" id="agi-kpi-relatorios-foot">—</span></div>
+            </div>
+
+            <div class="grid-2">
+              <div class="card tall">
+                <h3>Visitas por técnico</h3>
+                <span class="sub">Quantidade de visitas agendadas por profissional</span>
+                <canvas id="chart-agenda-tecnico"></canvas>
+              </div>
+              <div class="card tall">
+                <h3>Visitas por motivo</h3>
+                <span class="sub">Principais motivos de visita</span>
+                <canvas id="chart-agenda-motivo"></canvas>
+              </div>
+            </div>
+
+            <div class="card tall" style="margin-bottom:20px;">
+              <h3>Visitas por loja</h3>
+              <span class="sub">Unidades mais visitadas no período</span>
+              <canvas id="chart-agenda-loja"></canvas>
+            </div>
+
+            <div class="section-title"><span>Todas as visitas</span><div class="ln"></div></div>
+            <div class="card">
+              <span class="sub" style="display:block; margin-bottom:10px;">Geolocalização de check-in/check-out e cruzamento com relatórios de inspeção.</span>
+              <div class="table-wrap">
+                <table>
+                  <thead><tr><th>Data</th><th>Período</th><th>Profissional</th><th>Unidade</th><th>Motivo</th><th>Check-in</th><th>Check-out</th><th>Relatório de inspeção</th></tr></thead>
+                  <tbody id="tbl-agenda-todas-visitas"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- ============ GESTÃO ============ -->
@@ -1642,6 +1686,7 @@ tbody tr:hover{background:#fbf6ee;}
           <button type="button" class="insp-tab" data-sub="unidades" onclick="mostrarSubGestao('unidades')">Unidades</button>
           <button type="button" class="insp-tab" data-sub="estrutura" onclick="mostrarSubGestao('estrutura')">Estrutura Operacional</button>
           <button type="button" class="insp-tab" data-sub="auditoria" onclick="mostrarSubGestao('auditoria')">Auditoria</button>
+          <button type="button" class="insp-tab" data-sub="importar" onclick="mostrarSubGestao('importar')">Importar Dados</button>
         </div>
 
         <!-- USUÁRIOS -->
@@ -1683,22 +1728,22 @@ tbody tr:hover{background:#fbf6ee;}
             <div class="card">
               <h3>Funções</h3>
               <div class="insp-add-item"><input type="text" id="novo-item-funcao" placeholder="ex.: Repositor" onkeydown="if(event.key==='Enter'){event.preventDefault();addEstrutura('funcoes');}"><button type="button" class="btn-secondary" onclick="addEstrutura('funcoes')">+ Adicionar</button></div>
-              <div id="lista-funcoes"></div>
+              <div class="estrutura-lista" id="lista-funcoes"></div>
             </div>
             <div class="card">
               <h3>Setores</h3>
               <div class="insp-add-item"><input type="text" id="novo-item-setor" placeholder="ex.: Logística" onkeydown="if(event.key==='Enter'){event.preventDefault();addEstrutura('setores');}"><button type="button" class="btn-secondary" onclick="addEstrutura('setores')">+ Adicionar</button></div>
-              <div id="lista-setores"></div>
+              <div class="estrutura-lista" id="lista-setores"></div>
             </div>
             <div class="card">
-              <h3>BPs</h3>
-              <div class="insp-add-item"><input type="text" id="novo-item-bp" placeholder="ex.: BP-1050" onkeydown="if(event.key==='Enter'){event.preventDefault();addEstrutura('bps');}"><button type="button" class="btn-secondary" onclick="addEstrutura('bps')">+ Adicionar</button></div>
-              <div id="lista-bps"></div>
+              <h3>BPs <span style="font-weight:400; text-transform:none; color:var(--areia-esc); font-size:11.5px;">(pessoas responsáveis)</span></h3>
+              <div class="insp-add-item"><input type="text" id="novo-item-bp" placeholder="ex.: Marcelo Andrade" onkeydown="if(event.key==='Enter'){event.preventDefault();addEstrutura('bps');}"><button type="button" class="btn-secondary" onclick="addEstrutura('bps')">+ Adicionar</button></div>
+              <div class="estrutura-lista" id="lista-bps"></div>
             </div>
             <div class="card">
               <h3>Gerentes Regionais</h3>
               <div class="insp-add-item"><input type="text" id="novo-item-gr" placeholder="ex.: Marcelo Andrade" onkeydown="if(event.key==='Enter'){event.preventDefault();addEstrutura('gerentesRegionais');}"><button type="button" class="btn-secondary" onclick="addEstrutura('gerentesRegionais')">+ Adicionar</button></div>
-              <div id="lista-gerentesRegionais"></div>
+              <div class="estrutura-lista" id="lista-gerentesRegionais"></div>
             </div>
           </div>
           <div class="card" style="margin-top:16px;">
@@ -1719,6 +1764,46 @@ tbody tr:hover{background:#fbf6ee;}
               </table>
             </div>
           </div>
+        </div>
+
+        <!-- IMPORTAR DADOS -->
+        <div class="insp-sub" id="gestao-sub-importar">
+          <span class="sub" style="display:block; margin-bottom:16px;">Importe bases de dados existentes para a plataforma. Cada seção abaixo tem seu próprio modelo de planilha.</span>
+
+          <div class="section-title"><span>Acidentes e Incidentes</span><div class="ln"></div></div>
+<div id="painel-upload">
+          <div class="card" style="margin-bottom:18px;">
+            <h3>Como importar</h3>
+            <span class="sub">1. Baixe o modelo · 2. Preencha uma linha por acidente · 3. Envie o arquivo preenchido abaixo</span>
+            <div class="template-links">
+              <button class="btn-secondary" onclick="baixarModelo()">⬇ Baixar planilha modelo (.xlsx)</button>
+            </div>
+          </div>
+
+          <div class="upload-zone" id="drop-zone" onclick="document.getElementById('file-input').click()">
+            <div class="icon">⇪</div>
+            <h3>Clique para selecionar ou arraste o arquivo aqui</h3>
+            <p>Formatos aceitos: .xlsx, .xls, .csv</p>
+            <input type="file" id="file-input" accept=".xlsx,.xls,.csv" style="display:none">
+          </div>
+
+          <div class="section-title"><span>Pré-visualização do arquivo</span><div class="ln"></div></div>
+          <div class="card" style="margin-bottom:18px;">
+            <span class="sub" id="upload-status">Nenhum arquivo carregado ainda.</span>
+            <div class="table-wrap" style="margin-top:10px;">
+              <table>
+                <thead id="tbl-preview-head"></thead>
+                <tbody id="tbl-preview-body"></tbody>
+              </table>
+            </div>
+            <div class="form-actions" id="upload-actions" style="display:none;">
+              <button class="btn-primary inline" onclick="confirmarImportacao()">Confirmar importação</button>
+              <button class="btn-secondary" onclick="cancelarImportacao()">Cancelar</button>
+            </div>
+          </div>
+        </div>
+
+        
         </div>
       </section>
 
@@ -1767,8 +1852,7 @@ tbody tr:hover{background:#fbf6ee;}
       <div class="field">
         <label>Módulos que este usuário pode acessar</label>
         <div class="mod-check">
-          <label><input type="checkbox" value="dashboard" class="us-mod"> Dashboard de Acidentes</label>
-          <label><input type="checkbox" value="lancamento" class="us-mod"> Lançamento de Dados</label>
+          <label><input type="checkbox" value="lancamento" class="us-mod"> Acidentes e Incidentes</label>
           <label><input type="checkbox" value="inspecoes" class="us-mod"> Inspeções de Segurança</label>
           <label><input type="checkbox" value="agenda" class="us-mod"> Agenda</label>
           <label><input type="checkbox" value="gestao" class="us-mod"> Gestão (Usuários, Unidades, Estrutura, Auditoria)</label>
@@ -1994,20 +2078,25 @@ let proxIdUnidade = 69;
 let ESTRUTURA = { funcoes:[], setores:[], bps:[], gerentesRegionais:[] };
 function renderEstrutura(){
   const mapa = {funcoes:"lista-funcoes", setores:"lista-setores", bps:"lista-bps", gerentesRegionais:"lista-gerentesRegionais"};
+  const saoPessoas = {funcoes:false, setores:false, bps:true, gerentesRegionais:true};
   Object.entries(mapa).forEach(([chave, elId])=>{
     const wrap = document.getElementById(elId);
     if(!wrap) return;
-    if(!ESTRUTURA[chave].length){ wrap.innerHTML = '<span class="sub">Nenhum item cadastrado.</span>'; return; }
-    wrap.innerHTML = ESTRUTURA[chave].map((v,idx)=>`
+    if(!ESTRUTURA[chave].length){ wrap.innerHTML = '<span class="estrutura-vazio">Nenhum item cadastrado.</span>'; return; }
+    wrap.innerHTML = ESTRUTURA[chave].map((v,idx)=>{
+      const iniciais = saoPessoas[chave] ? v.trim().split(/\s+/).slice(0,2).map(p=>p[0]).join("").toUpperCase() : "";
+      return `
       <div class="admin-item-row">
-        <span>${v}</span>
-        <button type="button" onclick="removerEstrutura('${chave}', ${idx})">Remover</button>
+        ${saoPessoas[chave] ? `<div class="avatar-mini">${iniciais}</div>` : ""}
+        <span class="txt">${v}</span>
+        <button type="button" class="del-btn" onclick="removerEstrutura('${chave}', ${idx})">Remover</button>
       </div>
-    `).join("");
+    `;
+    }).join("");
   });
   const listaLojas = document.getElementById("lista-lojas-readonly");
   if(listaLojas){
-    listaLojas.innerHTML = UNIDADES.map(u=>`<span class="pill" style="margin:0 8px 8px 0; display:inline-flex;">${u.nome}</span>`).join("") || '<span class="sub">Nenhuma unidade cadastrada.</span>';
+    listaLojas.innerHTML = UNIDADES.map(u=>`<span class="pill" style="margin:0 8px 8px 0; display:inline-flex;">${u.nome}</span>`).join("") || '<span class="estrutura-vazio">Nenhuma unidade cadastrada.</span>';
   }
   popularDropdownsLancamento();
 }
@@ -2181,9 +2270,9 @@ async function removerUnidade(id){
    2) USUÁRIOS E CONTROLE DE ACESSO
    ===================================================================== */
 const MODULOS_PADRAO = {
-  "Administrador": ["dashboard","lancamento","inspecoes","agenda","gestao"],
-  "Coordenador": ["dashboard","lancamento","inspecoes","agenda","gestao"],
-  "Usuário Padrão": ["dashboard","lancamento","inspecoes","agenda"]
+  "Administrador": ["lancamento","inspecoes","agenda","gestao"],
+  "Coordenador": ["lancamento","inspecoes","agenda","gestao"],
+  "Usuário Padrão": ["lancamento","inspecoes","agenda"]
 };
 let USUARIOS = [];
 let currentUser = null;
@@ -2388,8 +2477,10 @@ function irParaView(view){
   document.getElementById("view-"+view).classList.add("active");
   const navEl = document.querySelector('.nav-item[data-view="'+view+'"]');
   if(navEl) navEl.classList.add("active");
-  if(view==="dashboard") requestAnimationFrame(()=>requestAnimationFrame(atualizarDashboard));
-  if(view==="lancamento") renderLancamentos();
+  if(view==="lancamento"){
+    renderLancamentos();
+    requestAnimationFrame(()=>requestAnimationFrame(atualizarDashboard));
+  }
   if(view==="inspecoes") initInspecoes();
   if(view==="agenda") initAgenda();
   if(view==="gestao") initGestao();
@@ -4003,6 +4094,14 @@ function popularSelectUnidadeAgenda(){
   sel.innerHTML = '<option value="">Selecione...</option>' + UNIDADES.map(u=>`<option>${u.nome}</option>`).join("");
   sel.value = atual || "";
 }
+function mostrarSubAcidentes(sub){
+  document.querySelectorAll("#view-lancamento .insp-tab").forEach(b=>b.classList.remove("active"));
+  document.querySelector('#view-lancamento .insp-tab[data-sub="'+sub+'"]').classList.add("active");
+  document.querySelectorAll("#view-lancamento .insp-sub").forEach(s=>s.classList.remove("active"));
+  document.getElementById("acidentes-sub-"+sub).classList.add("active");
+  if(sub==="indicadores") requestAnimationFrame(()=>requestAnimationFrame(atualizarDashboard));
+  if(sub==="registro") renderLancamentos();
+}
 function mostrarSubAgenda(sub){
   document.querySelectorAll("#view-agenda .insp-tab").forEach(b=>b.classList.remove("active"));
   document.querySelector('#view-agenda .insp-tab[data-sub="'+sub+'"]').classList.add("active");
@@ -4011,6 +4110,7 @@ function mostrarSubAgenda(sub){
   if(sub==="semanal") renderGradeSemanal();
   if(sub==="mensal") renderGradeMensal();
   if(sub==="aprovacoes") renderAprovacoesAgenda();
+  if(sub==="indicadores") requestAnimationFrame(()=>requestAnimationFrame(renderIndicadoresAgenda));
 }
 
 /* ---- Nova visita ---- */
@@ -4149,6 +4249,110 @@ async function rejeitarVisita(id){
   mostrarToast("Visita rejeitada.");
 }
 
+/* ---- Indicadores da Agenda (Administrador/Coordenador) ---- */
+function limparFiltrosAgendaIndicadores(){
+  document.getElementById("ag-ind-de").value = "";
+  document.getElementById("ag-ind-ate").value = "";
+  document.getElementById("ag-ind-profissional").value = "";
+  renderIndicadoresAgenda();
+}
+function linkGeo(geo){
+  if(!geo || geo.lat==null) return "—";
+  return `<a href="https://www.google.com/maps?q=${geo.lat},${geo.lng}" target="_blank" rel="noopener">📍 ver mapa</a>`;
+}
+function renderIndicadoresAgenda(){
+  const podeVer = podeAprovarAgenda(currentUser);
+  const semPermissao = document.getElementById("agenda-indicadores-sem-permissao");
+  const conteudo = document.getElementById("agenda-indicadores-conteudo");
+  if(!podeVer){
+    semPermissao.style.display = "block";
+    conteudo.style.display = "none";
+    return;
+  }
+  semPermissao.style.display = "none";
+  conteudo.style.display = "block";
+
+  const selProf = document.getElementById("ag-ind-profissional");
+  if(selProf && !selProf.dataset.preenchido){
+    const nomes = [...new Set(AGENDA.map(v=>v.usuarioNome))].sort();
+    selProf.innerHTML = '<option value="">Todos</option>' + nomes.map(n=>`<option>${n}</option>`).join("");
+    selProf.dataset.preenchido = "1";
+  }
+
+  const de = document.getElementById("ag-ind-de").value;
+  const ate = document.getElementById("ag-ind-ate").value;
+  const prof = document.getElementById("ag-ind-profissional").value;
+
+  const visitas = AGENDA.filter(v=>{
+    if(v.status==="Rejeitado") return false;
+    if(de && v.data < de) return false;
+    if(ate && v.data > ate) return false;
+    if(prof && v.usuarioNome !== prof) return false;
+    return true;
+  }).sort((a,b)=> a.data<b.data?1:-1);
+
+  const qtdCheckin = visitas.filter(v=>v.checkin).length;
+  const qtdCheckout = visitas.filter(v=>v.checkout).length;
+  const comRelatorio = visitas.filter(v=> INSPECOES.some(i=>i.unidade===v.unidade && i.data===v.data)).length;
+
+  document.getElementById("agi-kpi-total").textContent = visitas.length;
+  document.getElementById("agi-kpi-total-foot").textContent = visitas.length? "No período selecionado" : "—";
+  document.getElementById("agi-kpi-checkin").textContent = qtdCheckin;
+  document.getElementById("agi-kpi-checkout").textContent = qtdCheckout;
+  document.getElementById("agi-kpi-relatorios").textContent = comRelatorio;
+  document.getElementById("agi-kpi-relatorios-foot").textContent = visitas.length? Math.round(comRelatorio/visitas.length*100)+"% das visitas com relatório" : "—";
+
+  const porTecnico = {};
+  const porMotivo = {};
+  const porLoja = {};
+  visitas.forEach(v=>{
+    porTecnico[v.usuarioNome] = (porTecnico[v.usuarioNome]||0)+1;
+    const motivo = v.motivo || "Não informado";
+    porMotivo[motivo] = (porMotivo[motivo]||0)+1;
+    porLoja[v.unidade] = (porLoja[v.unidade]||0)+1;
+  });
+
+  const tecnicoOrdenado = Object.entries(porTecnico).sort((a,b)=>b[1]-a[1]);
+  criarChart("agendaTecnico", "chart-agenda-tecnico", {
+    type:"bar",
+    data:{ labels:tecnicoOrdenado.map(t=>t[0]), datasets:[{label:"Visitas", data:tecnicoOrdenado.map(t=>t[1]), backgroundColor:"#00733f", borderRadius:6}]},
+    options:{indexAxis:"y", plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true, ticks:{precision:0}}}}
+  });
+
+  const motivoOrdenado = Object.entries(porMotivo).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  criarChart("agendaMotivo", "chart-agenda-motivo", {
+    type:"bar",
+    data:{ labels:motivoOrdenado.map(m=>m[0]), datasets:[{label:"Visitas", data:motivoOrdenado.map(m=>m[1]), backgroundColor:"#faa61a", borderRadius:6}]},
+    options:{indexAxis:"y", plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true, ticks:{precision:0}}}}
+  });
+
+  const lojaOrdenada = Object.entries(porLoja).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  criarChart("agendaLoja", "chart-agenda-loja", {
+    type:"bar",
+    data:{ labels:lojaOrdenada.map(l=>l[0]), datasets:[{label:"Visitas", data:lojaOrdenada.map(l=>l[1]), backgroundColor:"#a15a33", borderRadius:6}]},
+    options:{indexAxis:"y", plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true, ticks:{precision:0}}}}
+  });
+
+  const tbody = document.getElementById("tbl-agenda-todas-visitas");
+  if(!visitas.length){
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--areia-esc);padding:16px;">Nenhuma visita para os filtros selecionados.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = visitas.map(v=>{
+    const temRelatorio = INSPECOES.find(i=>i.unidade===v.unidade && i.data===v.data);
+    return `<tr>
+      <td>${v.data.split("-").reverse().join("/")}</td>
+      <td>${v.periodo}</td>
+      <td>${v.usuarioNome}</td>
+      <td>${v.unidade}</td>
+      <td>${v.motivo}</td>
+      <td>${v.checkin? v.checkin.hora+"<br>"+linkGeo(v.checkin.geo) : "—"}</td>
+      <td>${v.checkout? v.checkout.hora+"<br>"+linkGeo(v.checkout.geo) : "—"}</td>
+      <td>${temRelatorio ? `<span class="tag-status concluido">Feito</span> <button type="button" class="small-btn" onclick="verDetalheInspecao(${temRelatorio.id})">Ver</button>` : '<span class="tag-status notificado">Não feito</span>'}</td>
+    </tr>`;
+  }).join("");
+}
+
 /* ---- Visão semanal ---- */
 function segundaDaSemana(offsetSemanas){
   const hoje = new Date();
@@ -4159,6 +4363,12 @@ function segundaDaSemana(offsetSemanas){
   return hoje;
 }
 function mudarSemanaAgenda(delta){ semanaAgendaOffset += delta; renderGradeSemanal(); }
+function avatarFotoVisitaHTML(usuarioId){
+  const u = USUARIOS.find(x=>x.id===usuarioId);
+  if(u && u.foto) return `<img src="${u.foto}" class="avc-foto" alt="">`;
+  const iniciais = u ? u.nome.trim().split(/\s+/).slice(0,2).map(p=>p[0]).join("").toUpperCase() : "?";
+  return `<div class="avc-foto avc-foto-iniciais">${iniciais}</div>`;
+}
 function renderGradeSemanal(){
   const wrap = document.getElementById("grade-semanal-agenda");
   if(!wrap) return;
@@ -4181,6 +4391,7 @@ function renderGradeSemanal(){
       const conteudo = visitas.length
         ? visitas.map(v=>`
             <div class="agenda-visita-card ${v.status==='Pendente'?'pendente':'aprovado'}">
+              ${avatarFotoVisitaHTML(v.usuarioId)}
               <div class="avc-unidade">${v.unidade}</div>
               <div class="avc-nome">${v.usuarioNome}</div>
               <div class="avc-motivo">${v.motivo}</div>
@@ -4288,6 +4499,7 @@ function renderGradeMensal(){
     const doDia = AGENDA.filter(v=>v.data===dataStr && v.status!=="Rejeitado");
     const conteudoVisitas = doDia.map(v=>`
       <div class="agenda-visita-card mini ${v.status==='Pendente'?'pendente':'aprovado'}">
+        ${avatarFotoVisitaHTML(v.usuarioId)}
         <div class="avc-unidade">${v.unidade}</div>
         <div class="avc-nome">${v.usuarioNome} · ${v.periodo}</div>
         <div class="avc-motivo">${v.motivo}</div>
@@ -4305,7 +4517,7 @@ function renderGradeMensal(){
 function renderUsuarios(){
   const tb = document.getElementById("tbl-usuarios");
   tb.innerHTML="";
-  const nomesModulo = {dashboard:"Dashboard", lancamento:"Acidentes e Incidentes", inspecoes:"Inspeções", agenda:"Agenda", gestao:"Gestão"};
+  const nomesModulo = {lancamento:"Acidentes e Incidentes", inspecoes:"Inspeções", agenda:"Agenda", gestao:"Gestão"};
   USUARIOS.forEach(u=>{
     tb.innerHTML += `<tr>
       <td>${u.foto? `<img src="${u.foto}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;">` : `<div style="width:32px;height:32px;border-radius:50%;background:var(--areia-cla);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--marrom-esc);font-size:13px;">${u.nome.charAt(0).toUpperCase()}</div>`}</td>
