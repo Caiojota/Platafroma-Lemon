@@ -967,6 +967,36 @@ tbody tr:hover{background:#fbf6ee;}
 .oc-card-texto{font-size:13px; color:var(--marrom-esc); line-height:1.5;}
 .oc-card-acao{font-size:12px; color:var(--areia-esc); margin-top:6px; padding-top:6px; border-top:1px dashed var(--areia-cla);}
 
+/* ---- Ficha de EPI pública / impressão ---- */
+.ficha-epi-papel{background:#fff; border:1px solid var(--areia-cla); border-radius:10px; padding:28px 32px; box-shadow:0 2px 8px rgba(0,0,0,.06); color:#1a1a1a; font-size:13px; line-height:1.45;}
+.fe-logo-topo{display:flex; justify-content:center; margin-bottom:10px;}
+.fe-logo-topo img{height:44px; width:auto;}
+.fe-titulo{text-align:center; font-weight:800; font-size:16px; text-transform:uppercase; letter-spacing:.4px; margin-bottom:16px; color:#1a1a1a;}
+.fe-secao{font-weight:800; font-size:12px; text-transform:uppercase; background:#e5d1ab; padding:5px 10px; margin:16px 0 8px; border-radius:4px; color:#3d2e1f;}
+table.fe-dados-tabela{width:100%; border-collapse:collapse; font-size:11px; margin-bottom:2px;}
+table.fe-dados-tabela td{border:1px solid #999; padding:5px 7px;}
+table.fe-dados-tabela td.fe-lbl-td{background:#f2ede3; font-weight:700; font-size:9px; text-transform:uppercase; color:#3d2e1f;}
+table.fe-dados-compacta{width:100%; border-collapse:collapse; font-size:11px; margin-bottom:2px;}
+table.fe-dados-compacta td{border:1px solid #999; padding:5px 7px;}
+table.fe-dados-compacta td.fe-lbl-td{background:#f2ede3; font-weight:700; font-size:9px; text-transform:uppercase; color:#3d2e1f; width:35%;}
+.fe-termo{border:1px solid #999; padding:10px 12px; font-size:10.5px; text-align:justify; color:#333;}
+.fe-assinatura-linha{display:flex; justify-content:space-between; margin-top:22px; padding:0 30px; gap:10px;}
+.fe-assinatura-linha div{text-align:center; border-top:1px solid #333; padding-top:4px; font-size:10.5px; flex:1;}
+.fe-check-linha{border:1px solid #999; padding:8px 10px; font-size:11px;}
+table.fe-tabela-epi{width:100%; border-collapse:collapse; font-size:10.5px; margin-top:4px;}
+table.fe-tabela-epi th, table.fe-tabela-epi td{border:1px solid #999; padding:5px 6px; text-align:center;}
+table.fe-tabela-epi th{background:#f2ede3; font-size:9px; text-transform:uppercase; font-weight:700;}
+table.fe-tabela-epi td.fe-desc{text-align:left;}
+.fe-legenda{font-size:9.5px; color:#444; margin-top:6px;}
+.fe-pagebreak{page-break-before:always;}
+@media print{
+  .no-print{display:none !important;}
+  body{background:#fff !important;}
+  #ficha-epi-screen{padding:0 !important; background:#fff !important;}
+  .ficha-epi-papel{box-shadow:none; border:none; padding:0;}
+  @page{ margin: 14mm; }
+}
+
 /* ---- Pendências: mini-dashboard por categoria ---- */
 .pend-mini-dash{display:flex; gap:12px; flex-wrap:wrap;}
 .pend-mini-card{background:var(--branco); border:1px solid var(--areia-cla); border-radius:10px; padding:12px 18px; min-width:150px;}
@@ -1184,6 +1214,55 @@ tbody tr:hover{background:#fbf6ee;}
         </div>
         <button type="submit" class="btn-primary" id="btn-login">Entrar</button>
       </form>
+      <div style="margin-top:18px; text-align:center;">
+        <a href="#ficha-epi" onclick="abrirFichaEpiPublica(); return false;" style="font-size:13px; color:var(--terracota); text-decoration:underline; cursor:pointer;">Imprimir Ficha de EPI (sem necessidade de login)</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================
+     FICHA DE EPI — PÁGINA PÚBLICA, SEM LOGIN
+========================================================= -->
+<div id="ficha-epi-screen" style="display:none; min-height:100vh; background:var(--creme); padding:30px 16px;">
+  <div style="max-width:820px; margin:0 auto;">
+    <div class="no-print" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+      <div class="brand-logo" style="height:34px;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAAAuCAMAAADeHUEdAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAADDUExURQAAAFBAMFVAMFNALVJALVJALlRCLlNCL1RALFJALlNBLlNBLlNBLlNCL1NBLlNBLVBAMFNALVJCLlJALlJDMFNCLlNCLlVAK1Q/LlNBLlRCL2BAIFVAK1RBLlNBLlNAL1NBLlNBLk1AM1JCLVNBLVNBLlRALlJALlNBLlJAL1NALVRBLlNCL1NBLlRAL1VHK1NBLlJALlFALlJALlRALlNCLbHTg7YAAABBdFJOUwAQMFBgcI+fQIDP7/+v378gRKOl09s8mxi0uQRspzg10mkkPfuDCAzD7Gjn1xQ+qfN0VN5XKOuIx0wSmhxIZFiH3meKKQAAAAlwSFlzAAAOwwAADsMBx2+oZAAABG5JREFUWEfFmIt23DQQhkeWZFmaX5cCaQNpC5Q0CZRrIFDuvP9TcUZ2sl6tk/WSdvnO2Xgtea3fc9M4ROtQXaeN7V07fjwGHxiV2E4diyGMAgTdTh4H5TYSkFQ7fRRUnGmAbaePQz/XkNvZ49DNNYS1zhjagcfh5xpKO3sPT/BuVcwiwq21A32AD9uhR3GbnZy7dup+PsJJO/QosggIvVlphafPzCnRx/iEzp6/eNnOHorSWotje/bdSgHCp8Bnn5OHfxWAtSG0jNJTlY6GvtB9jrFfGWln5wBeX8TLAFy1kwdhp31im3V16jWALzV9Bbx5jCG2yvScsCY0L76G2ODZefymnTqAktrFN6zxybffAd+fvrpoxw9BSTrcyxoVZz8ErLHZA2xtFTtwe/ky6oB8WsC0yzbs62k68x+4bG4ya1+W2WNo216/hiaNdDu/w54e811Y4sGoHHlM9q+j28/DIvz5NVGpzY+GpmEUrlgimrnuyamXCxWLTQfUk4rq7IGYe2LD4sefSFURGYFunMMb52T9SYRzqbrUg8uWiGGxTO9huX564OebaokBXF2HMK4/iSikkIhUYvi5CIsUUD8syRFC/RZC4BDkTI6yoYUE1O8ywsuJ4hHPT16KiIihPnIjYihW8lzDJ56JKIyeEizV1km0EvW1o7VGYTyOLtaAGrfTIEUtbS0/4mGe4wSZCsfxXpOIMzpDGvs01kSZlYHZiDC4FaENG4XioRXYFJazmvmmQ6Y0igCT41Qr60KMWlj6Rbpyj+yymKKKeItf6QmuKKIP8v6kkVwEb0RYEVG6QiCHTFx0NAqwBRARRTsYFS3FSYRcNopY2ElExG+/IyvmlJIEXxVxjfNwjmuxTRGJGSklhhkgl/1RY6mn3mlC6REVF1VfeG5F6BggzV0vIzXJ7kQsBIXJfxJdvuh18OLCYCjXZ71+m66uiXwo1DkuQaJFhdhl4VSC49YdVvmiUXwmk+5EjO5g1eVAdlC8EcGP26a2icg6wWmg1z3DOvRDgjOQj5ZHdgbBRETjJX10BGuxVXsjefa+7/340jyWEld5+lc9kJXpQiSH8efKjo/ycAtxL5taN2PcwCQMSk1LGkuQGbu1aX8cqB6kWpG/exbrck3/A7in87WwSmepQx6QzJ6S3o1RHFCURyQEpaIsr3htj3IAkh2kkUlxZjHInQjnjYhQJOkutrJiS484ad2g9lkk7wnGKqIgkZdoqlExiahOCohZ6jU4BuaBVEpFKuc2+xqKpWCcc2sJlbiUsQ+bRPxdTkVEqvcAJ7CRK3vV75hi/gK8wN7/T1g40zPM1CZK6E0i/jHGiDu8vFEhSPHspv5ldNsMtb3qNrxQnrap2cGWAltr+7qD3bmjZociKdcIpBKiRrbW5t2q95BDduy2gxqGoVOkTE0GIz/ohguim0GgToa7gQY5Dl2nxVSl/t1m6oZ2EScejW65x5Ed+Ih0S2+CvFyd3iO2lcFTiT8uWzLS/yJB0D4ngFP2w3uX8C/rDF7jeli/YgAAAABJRU5ErkJggg==" alt="Hortifruti Natural da Terra" style="height:100%;"></div>
+      <a href="#" onclick="voltarParaLoginDeFicha(); return false;" style="font-size:13px; color:var(--areia-esc); text-decoration:underline;">‹ Voltar ao login</a>
+    </div>
+
+    <div class="no-print card" id="epi-busca-card">
+      <h3>Ficha de Registro de Controle de EPI</h3>
+      <span class="sub">Digite a matrícula e clique em buscar. Os dados (nome, loja, setor e admissão) e a lista de EPIs da função são preenchidos automaticamente.</span>
+      <div style="display:flex; gap:10px; align-items:flex-end; margin-top:12px; flex-wrap:wrap;">
+        <div class="field" style="flex:1; min-width:180px; margin-bottom:0;"><label>Matrícula</label><input type="text" id="epi-pub-matricula" placeholder="ex.: 20008567" onkeydown="if(event.key==='Enter'){event.preventDefault();buscarFichaEpiPublica();}"></div>
+        <button type="button" class="btn-primary inline" onclick="buscarFichaEpiPublica()">Buscar</button>
+      </div>
+      <span class="sub" id="epi-pub-status" style="display:block; margin-top:10px; font-weight:600;"></span>
+    </div>
+
+    <div class="no-print card" id="epi-pub-marcacao-wrap" style="display:none;">
+      <h3>Antes de imprimir: quais EPIs o colaborador já tem?</h3>
+      <span class="sub">Marque os itens que já foram entregues anteriormente e informe a data. Os itens não marcados saem em branco na ficha, para entrega e assinatura na hora.</span>
+      <div class="table-wrap" style="margin-top:12px;">
+        <table>
+          <thead><tr><th style="width:40px;">Já tem</th><th>Descrição do EPI</th><th style="width:110px;">C.A</th><th style="width:170px;">Data da entrega</th></tr></thead>
+          <tbody id="epi-pub-marcacao-tbody"></tbody>
+        </table>
+      </div>
+      <div style="display:flex; gap:10px; margin-top:14px;">
+        <button type="button" class="btn-primary inline" onclick="gerarFichaComEntregas()">Gerar ficha para impressão</button>
+        <button type="button" class="btn-secondary" onclick="novaBuscaFichaEpi()">‹ Voltar à busca</button>
+      </div>
+    </div>
+
+    <div id="epi-pub-ficha-wrap" style="display:none;">
+      <div class="no-print" style="margin:16px 0; display:flex; gap:10px;">
+        <button type="button" class="btn-primary inline" onclick="window.print()">🖨 Imprimir ficha</button>
+        <button type="button" class="btn-secondary" onclick="voltarParaMarcacaoEpi()">‹ Ajustar EPIs já entregues</button>
+        <button type="button" class="btn-secondary" onclick="novaBuscaFichaEpi()">Buscar outra matrícula</button>
+      </div>
+      <div class="ficha-epi-papel" id="ficha-epi-conteudo"></div>
     </div>
   </div>
 </div>
@@ -1252,6 +1331,8 @@ tbody tr:hover{background:#fbf6ee;}
       <a href="#" class="nav-item" data-view="agenda"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V3a1 1 0 0 1 1-1Zm13 8H4v10a.5.5 0 0 0 .5.5h15a.5.5 0 0 0 .5-.5V10Z"/></svg></span> Agenda</a>
       <a href="#" class="nav-item" data-view="demandas"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6Z"/></svg></span> Demandas</a>
       <a href="#" class="nav-item" data-view="saude"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 21s-7.5-4.6-10.1-9.2C.4 9 1.4 5.6 4.4 4.3c2.3-1 4.8-.3 6.3 1.5l1.3 1.6 1.3-1.6c1.5-1.8 4-2.5 6.3-1.5 3 1.3 4 4.7 2.5 7.5C19.5 16.4 12 21 12 21Zm-1-11h-2v2H7v2h2v2h2v-2h2v-2h-2v-2Z"/></svg></span> Saúde</a>
+      <a href="#" class="nav-item" data-view="absenteismo"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 12h6M9 16h6M8 3v2M16 3v2M4 7h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Absenteísmo</a>
+      <a href="#" class="nav-item" data-view="auditoriaEpi"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 3h6l1.2 2H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2.8L9 3Zm.5 8.5 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Auditoria EPI</a>
       <a href="#" class="nav-item" data-view="gestao"><span class="ic"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M19.4 13a7.7 7.7 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.6 7.6 0 0 0-1.7-1L15 3h-4l-.3 2.9a7.6 7.6 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.7 7.7 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1c.5.4 1.1.75 1.7 1L11 21h4l.3-2.9c.6-.25 1.2-.6 1.7-1l2.5 1 2-3.5-2.1-1.6ZM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></span> Gestão</a>
     </nav>
 
@@ -2085,6 +2166,142 @@ tbody tr:hover{background:#fbf6ee;}
         </div>
       </section>
 
+      <!-- ============ ABSENTEÍSMO ============ -->
+      <section class="view" id="view-absenteismo">
+        <div class="topbar">
+          <div><span class="eyebrow">indicadores de recursos humanos</span><h2>Absenteísmo</h2></div>
+        </div>
+
+        <div class="insp-subnav">
+          <button type="button" class="insp-tab active" data-sub="visao" onclick="mostrarSubAbsenteismo('visao')">Visão Geral</button>
+          <button type="button" class="insp-tab" data-sub="mensal" onclick="mostrarSubAbsenteismo('mensal')">Evolução Mensal</button>
+          <button type="button" class="insp-tab" data-sub="detalhe" onclick="mostrarSubAbsenteismo('detalhe')">Detalhamento por Loja e Setor</button>
+        </div>
+
+        <div class="insp-sub active" id="absenteismo-sub-visao">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <div class="switch-aprovacao" id="abs-categoria-pills" style="flex-wrap:wrap; height:auto; padding:4px;"></div>
+            <div class="switch-aprovacao" id="abs-metrica-pills" style="height:auto; padding:4px;"></div>
+          </div>
+
+          <div class="filters" style="margin-top:12px;">
+            <div class="f-group"><label>Loja</label><select id="abs-f-loja" onchange="renderAbsenteismoVisaoGeral()"><option value="">Todas</option></select></div>
+            <div class="f-group"><label>Setor</label><select id="abs-f-setor" onchange="renderAbsenteismoVisaoGeral()"><option value="">Todos</option></select></div>
+            <div class="f-group"><label>Regional</label><select id="abs-f-regional" onchange="renderAbsenteismoVisaoGeral()"><option value="">Todas</option></select></div>
+            <div class="f-group"><label>De</label><input type="date" id="abs-f-de" onchange="renderAbsenteismoVisaoGeral()"></div>
+            <div class="f-group"><label>Até</label><input type="date" id="abs-f-ate" onchange="renderAbsenteismoVisaoGeral()"></div>
+            <button class="btn-clear" onclick="limparFiltrosAbsenteismo()">Limpar filtros</button>
+          </div>
+
+          <div class="kpi-row" id="abs-kpi-row"></div>
+
+          <div class="grid-2">
+            <div class="card tall"><h3 id="abs-titulo-loja">Por loja</h3><canvas id="chart-abs-loja"></canvas></div>
+            <div class="card tall"><h3 id="abs-titulo-setor">Por setor</h3><canvas id="chart-abs-setor"></canvas></div>
+          </div>
+          <div class="grid-2">
+            <div class="card tall"><h3 id="abs-titulo-regional">Por regional</h3><canvas id="chart-abs-regional"></canvas></div>
+            <div class="card tall">
+              <h3>Ranking de lojas — total de dias</h3>
+              <span class="sub">Do menor para o maior volume de ausência em dias</span>
+              <div class="table-wrap" style="max-height:340px; overflow:auto;">
+                <table>
+                  <thead><tr><th>#</th><th>Loja</th><th>Registros</th><th>Total dias</th><th>Média dias/reg.</th></tr></thead>
+                  <tbody id="tbl-abs-ranking"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="insp-sub" id="absenteismo-sub-mensal">
+          <span class="sub" style="display:block; margin-bottom:14px;">Evolução mês a mês, Jan a Jun/2026, dos 5 indicadores oficiais.</span>
+          <div class="card tall">
+            <h3>Ausências por mês</h3>
+            <canvas id="chart-abs-mensal"></canvas>
+          </div>
+          <div class="card" style="margin-top:16px;">
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Mês</th><th>Abono dia</th><th>Faltas não justificadas</th><th>Acidente de trabalho</th><th>Licença médica</th><th>Licença médica contin.</th><th>Total</th></tr></thead>
+                <tbody id="tbl-abs-mensal"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="insp-sub" id="absenteismo-sub-detalhe">
+          <span class="sub" style="display:block; margin-bottom:14px;">Base detalhada por loja e setor, igual à planilha oficial "Setor Ofensor".</span>
+          <div class="filters">
+            <div class="f-group" style="min-width:220px;"><label>Buscar</label><input type="text" id="abs-busca" placeholder="Loja ou setor..." oninput="renderAbsenteismoDetalheTabela()"></div>
+            <button class="btn-clear" onclick="document.getElementById('abs-busca').value=''; renderAbsenteismoDetalheTabela();">Limpar busca</button>
+          </div>
+          <span class="sub" id="abs-reg-contador" style="display:block; margin-bottom:10px;"></span>
+          <div class="card">
+            <div class="table-wrap tabela-demandas-wrap" style="max-height:calc(100vh - 360px);">
+              <table class="tabela-demandas">
+                <thead>
+                  <tr>
+                    <th class="col-sticky" style="min-width:200px; max-width:260px;" onclick="ordenarAbsenteismoDetalhe('loja')">Loja</th>
+                    <th onclick="ordenarAbsenteismoDetalhe('setor')">Setor</th>
+                    <th onclick="ordenarAbsenteismoDetalhe('abonoDia')">Abono dia</th>
+                    <th onclick="ordenarAbsenteismoDetalhe('acidenteTrabalho')">Acidente trabalho</th>
+                    <th onclick="ordenarAbsenteismoDetalhe('faltasNaoJustificadas')">Faltas não justif.</th>
+                    <th onclick="ordenarAbsenteismoDetalhe('licencaMedica')">Licença médica</th>
+                    <th onclick="ordenarAbsenteismoDetalhe('licencaMedicaContin')">Licença méd. contin.</th>
+                    <th onclick="ordenarAbsenteismoDetalhe('totalAusencias')">Total ausências</th>
+                    <th onclick="ordenarAbsenteismoDetalhe('totalDias')">Total dias</th>
+                    <th onclick="ordenarAbsenteismoDetalhe('mediaDias')">Média dias</th>
+                  </tr>
+                </thead>
+                <tbody id="tbl-abs-detalhe"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ AUDITORIA EPI ============ -->
+      <section class="view" id="view-auditoriaEpi">
+        <div class="topbar">
+          <div><span class="eyebrow">segurança do trabalho</span><h2>Auditoria de Fichas de EPI</h2></div>
+        </div>
+        <span class="sub" style="display:block; margin-bottom:14px;">Sempre que uma ficha de EPI é impressa (na página pública, sem login), ela fica registrada aqui. Quando o técnico responsável for à loja, pode conferir as fichas impressas e habilitá-las, ou marcar divergência com uma observação.</span>
+
+        <div class="filters">
+          <div class="f-group"><label>Loja</label><select id="aud-f-loja" onchange="renderAuditoriaEpi()"><option value="">Todas</option></select></div>
+          <div class="f-group"><label>Status</label><select id="aud-f-status" onchange="renderAuditoriaEpi()"><option value="">Todos</option><option>Pendente</option><option>Habilitada</option><option>Divergência</option></select></div>
+          <div class="f-group"><label>Buscar</label><input type="text" id="aud-f-busca" placeholder="Colaborador ou matrícula" oninput="renderAuditoriaEpi()"></div>
+          <button class="btn-clear" onclick="limparFiltrosAuditoriaEpi()">Limpar filtros</button>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi k1"><div class="lbl">Fichas impressas</div><div class="val" id="aud-kpi-total">0</div><span class="foot">No filtro atual</span></div>
+          <div class="kpi k5"><div class="lbl">Pendentes</div><div class="val" id="aud-kpi-pendentes">0</div><span class="foot">Aguardando auditoria</span></div>
+          <div class="kpi k2"><div class="lbl">Habilitadas</div><div class="val" id="aud-kpi-habilitadas">0</div><span class="foot">Conferidas OK</span></div>
+          <div class="kpi k4"><div class="lbl">Divergências</div><div class="val" id="aud-kpi-divergencias">0</div><span class="foot">Precisam de atenção</span></div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+          <button type="button" class="btn-primary inline" onclick="exportarRelatorioAuditoriaEpi()">📄 Gerar relatório de auditoria (PDF)</button>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap tabela-demandas-wrap" style="max-height:calc(100vh - 420px);">
+            <table class="tabela-demandas">
+              <thead>
+                <tr>
+                  <th class="col-sticky" style="min-width:200px; max-width:260px;">Colaborador</th>
+                  <th>Matrícula</th><th>Loja</th><th>Setor</th><th>Itens</th><th>Impressa em</th><th>Status</th><th>Observação</th><th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="tbl-auditoria-epi"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ GESTÃO ============ -->
       <!-- ============ GESTÃO ============ -->
       <section class="view" id="view-gestao">
         <div class="topbar">
@@ -2100,6 +2317,8 @@ tbody tr:hover{background:#fbf6ee;}
           <button type="button" class="insp-tab" data-sub="demandas" onclick="mostrarSubGestao('demandas')">Gestão de Demandas</button>
           <button type="button" class="insp-tab" data-sub="disponibilidade" onclick="mostrarSubGestao('disponibilidade')">Disponibilidade</button>
           <button type="button" class="insp-tab" data-sub="checklist" onclick="mostrarSubGestao('checklist')">Checklist de Inspeção</button>
+          <button type="button" class="insp-tab" data-sub="epi" onclick="mostrarSubGestao('epi')">Ficha de EPI</button>
+          <button type="button" class="insp-tab" data-sub="absenteismo" onclick="mostrarSubGestao('absenteismo')">Absenteísmo</button>
         </div>
 
         <!-- USUÁRIOS -->
@@ -2319,6 +2538,55 @@ tbody tr:hover{background:#fbf6ee;}
           <div class="insp-add-item"><input type="text" id="novo-tipo-ocorrencia" placeholder="ex.: Comportamental" onkeydown="if(event.key==='Enter'){event.preventDefault();addTipoOcorrencia();}"><button type="button" class="btn-secondary" onclick="addTipoOcorrencia()">+ Adicionar</button></div>
           <div class="estrutura-lista" id="lista-tipos-ocorrencia"></div>
         </div>
+
+        <!-- FICHA DE EPI -->
+        <div class="insp-sub" id="gestao-sub-epi">
+          <span class="sub" style="display:block; margin-bottom:16px;">Base usada pela página pública de impressão da Ficha de EPI (acessível sem login, direto da tela inicial). Envie a planilha "Gerador de Ficha de EPI" todo mês para manter a lista de colaboradores e os EPIs por função atualizados.</span>
+          <div class="card" style="margin-bottom:16px;">
+            <h3>Importar planilha de EPI</h3>
+            <span class="sub">Aceita o arquivo original, lendo as abas "BASE COLABORADORES" e "LISTA DE EPI POR FUNÇÃO". A leitura acontece aqui no seu navegador — sem limite de linhas.</span>
+            <div style="display:flex; gap:10px; align-items:center; margin-top:10px; flex-wrap:wrap;">
+              <input type="file" id="epi-import-file" accept=".xlsx,.xls">
+              <button type="button" class="btn-primary inline" onclick="importarBaseEpi()">Importar arquivo</button>
+              <label style="display:flex; align-items:center; gap:6px; font-size:12.5px; color:var(--areia-esc); cursor:pointer;"><input type="checkbox" id="epi-import-substituir" checked style="width:auto;"> Substituir toda a base atual antes de importar</label>
+            </div>
+            <span class="sub" id="epi-import-status" style="display:block; margin-top:10px; font-weight:600;"></span>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi k1"><div class="lbl">Colaboradores na base</div><div class="val" id="epi-kpi-colaboradores">0</div><span class="foot">Usados para buscar por matrícula</span></div>
+            <div class="kpi k2"><div class="lbl">Combinações setor + função</div><div class="val" id="epi-kpi-combinacoes">0</div><span class="foot">Com lista de EPI cadastrada</span></div>
+          </div>
+          <span class="sub" style="display:block; margin:8px 0;">Link público para compartilhar ou colocar num totem/kiosk: <b style="color:var(--marrom-esc);" id="epi-link-publico"></b></span>
+        </div>
+
+        <!-- ABSENTEÍSMO -->
+        <div class="insp-sub" id="gestao-sub-absenteismo">
+          <span class="sub" style="display:block; margin-bottom:16px;">Base do dashboard de Absenteísmo. Envie o relatório bruto de ausências (aba "GERAL", exportado do sistema de RH) — a própria plataforma identifica os campos, filtra as linhas relevantes e calcula os indicadores mês a mês, por loja, setor e regional. Reenviar o mesmo arquivo (ou um período mais recente) não duplica: registros já lançados são detectados e descartados automaticamente.</span>
+          <div class="card" style="margin-bottom:16px;">
+            <h3>Importar relatório de absenteísmo</h3>
+            <span class="sub">A leitura acontece aqui no seu navegador, sem limite de linhas. Linhas sem "Tipo de ausência ou presença" preenchido (vínculos, não ausências) são ignoradas automaticamente.</span>
+            <div style="display:flex; gap:10px; align-items:center; margin-top:10px; flex-wrap:wrap;">
+              <input type="file" id="abs-import-file" accept=".xlsx,.xls">
+              <button type="button" class="btn-primary inline" onclick="importarAbsenteismoBruto()">Importar arquivo</button>
+            </div>
+            <span class="sub" id="abs-import-status" style="display:block; margin-top:10px; font-weight:600;"></span>
+          </div>
+          <div class="kpi-row">
+            <div class="kpi k1"><div class="lbl">Registros na base</div><div class="val" id="abs-kpi-total-base">0</div><span class="foot">Ausências já importadas</span></div>
+          </div>
+
+          <div class="section-title" style="margin-top:20px;"><span>Categorias dos tipos de ausência</span><div class="ln"></div></div>
+          <span class="sub" style="display:block; margin-bottom:12px;">Defina a qual dos 5 indicadores do dashboard cada tipo de ausência pertence. Tipos sem categoria não entram nos indicadores principais, mas continuam contabilizados na base.</span>
+          <div class="card">
+            <div class="table-wrap" style="max-height:420px; overflow:auto;">
+              <table>
+                <thead><tr><th>Tipo de ausência (planilha)</th><th>Categoria do indicador</th></tr></thead>
+                <tbody id="tbl-abs-categorias"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </section>
 
     </main>
@@ -2372,6 +2640,8 @@ tbody tr:hover{background:#fbf6ee;}
           <label><input type="checkbox" value="agenda" class="us-mod"> Agenda</label>
           <label><input type="checkbox" value="demandas" class="us-mod"> Demandas</label>
           <label><input type="checkbox" value="saude" class="us-mod"> Saúde</label>
+          <label><input type="checkbox" value="absenteismo" class="us-mod"> Absenteísmo</label>
+          <label><input type="checkbox" value="auditoriaEpi" class="us-mod"> Auditoria EPI</label>
           <label><input type="checkbox" value="gestao" class="us-mod"> Gestão (Usuários, Unidades, Estrutura, Auditoria)</label>
         </div>
       </div>
@@ -2893,9 +3163,9 @@ async function removerUnidade(id){
    2) USUÁRIOS E CONTROLE DE ACESSO
    ===================================================================== */
 const MODULOS_PADRAO = {
-  "Administrador": ["lancamento","inspecoes","agenda","demandas","saude","gestao"],
-  "Coordenador": ["lancamento","inspecoes","agenda","demandas","saude","gestao"],
-  "Usuário Padrão": ["lancamento","inspecoes","agenda","demandas","saude"]
+  "Administrador": ["lancamento","inspecoes","agenda","demandas","saude","absenteismo","auditoriaEpi","gestao"],
+  "Coordenador": ["lancamento","inspecoes","agenda","demandas","saude","absenteismo","auditoriaEpi","gestao"],
+  "Usuário Padrão": ["lancamento","inspecoes","agenda","demandas","saude","absenteismo","auditoriaEpi"]
 };
 let USUARIOS = [];
 let currentUser = null;
@@ -2959,6 +3229,10 @@ function doLogout(){
 
 /* restaura a sessão automaticamente se a pessoa já estiver logada (recarregou a página, etc.) */
 document.addEventListener("DOMContentLoaded", async ()=>{
+  if(window.location.hash === "#ficha-epi"){
+    abrirFichaEpiPublica();
+    return;
+  }
   const { data } = await sb.auth.getSession();
   if(data && data.session && data.session.user){
     await entrarNaPlataforma(data.session.user.id);
@@ -3005,6 +3279,14 @@ function unidadeToDb(u){
     tipo_loja:u.tipoLoja, tipo_negocio:u.tipoNegocio, qtd_colaboradores:u.qtdColaboradores,
     tecnico_responsavel:u.tecnicoResponsavel, email_gerente:u.emailGerente,
     telefone_gerente:u.telefoneGerente, bp:u.bp, perfis_checkin:u.perfisComCheckin
+  };
+}
+function mapFichaEpiFromDb(r){
+  return {
+    id:r.id, matricula:r.matricula, nomeColaborador:r.nome_colaborador, loja:r.loja, setor:r.setor, funcao:r.funcao,
+    itens: Array.isArray(r.itens) ? r.itens : [], impressaEm:r.impressa_em,
+    statusAuditoria:r.status_auditoria||"Pendente", auditadoPor:r.auditado_por, auditadoEm:r.auditado_em,
+    observacoesAuditoria:r.observacoes_auditoria||""
   };
 }
 function mapProfileFromDb(r){
@@ -3079,7 +3361,7 @@ function demandaToDb(d){
    variáveis em memória que o resto do app já usa (ACIDENTES, UNIDADES, etc.)
    ===================================================================== */
 async function carregarDadosDoSupabase(){
-  const [rAc, rUn, rEst, rProf, rInsp, rAg, rFi, rDem, rFlu, rEta, rOpc, rNot, rTipCfg, rChkGrp, rChkIt, rOcTip, rAtest] = await Promise.all([
+  const [rAc, rUn, rEst, rProf, rInsp, rAg, rFi, rDem, rFlu, rEta, rOpc, rNot, rTipCfg, rChkGrp, rChkIt, rOcTip, rAtest, rAbsent, rAbsentCat, rEpiFichas] = await Promise.all([
     sb.from("acidentes").select("*").order("id"),
     sb.from("unidades").select("*").order("nome"),
     sb.from("estrutura_itens").select("*"),
@@ -3097,6 +3379,9 @@ async function carregarDadosDoSupabase(){
     sb.from("checklist_itens_config").select("*").order("ordem"),
     sb.from("ocorrencias_tipos").select("*").order("ordem"),
     sb.from("atestados").select("*").order("data_atestado", {ascending:false}),
+    sb.from("absenteismo").select("*").order("data_inicio", {ascending:false}).range(0, 59999),
+    sb.from("absenteismo_categorias").select("*"),
+    sb.from("epi_fichas_impressas").select("*").order("impressa_em", {ascending:false}).range(0, 9999),
   ]);
 
   if(rAc.error) console.error("[Supabase] acidentes:", rAc.error);
@@ -3142,6 +3427,16 @@ async function carregarDadosDoSupabase(){
     tipoAtestado:a.tipo_atestado, cid:a.cid, convenio:a.convenio, setor:a.setor, funcao:a.funcao
   }));
   if(rAtest.error) console.error("[Supabase] atestados:", rAtest.error);
+  ABSENTEISMO = (rAbsent.data||[]).map(a=>({
+    id:a.id, matricula:a.matricula, nome:a.nome, loja:a.loja, setor:a.setor, funcao:a.funcao,
+    tipoAusencia:a.tipo_ausencia, dias:Number(a.dias)||0, horas:Number(a.horas)||0,
+    dataInicio:a.data_inicio, dataFim:a.data_fim
+  }));
+  ABSENTEISMO_CATEGORIAS = (rAbsentCat.data||[]).map(c=>({id:c.id, tipoAusencia:c.tipo_ausencia, categoria:c.categoria}));
+  EPI_FICHAS_IMPRESSAS = (rEpiFichas.data||[]).map(mapFichaEpiFromDb);
+  if(rEpiFichas.error) console.error("[Supabase] epi_fichas_impressas:", rEpiFichas.error);
+  if(rAbsent.error) console.error("[Supabase] absenteismo:", rAbsent.error);
+  if(rAbsentCat.error) console.error("[Supabase] absenteismo_categorias:", rAbsentCat.error);
   if(rChkGrp.error) console.error("[Supabase] checklist_grupos:", rChkGrp.error);
   if(rChkIt.error) console.error("[Supabase] checklist_itens_config:", rChkIt.error);
   if(rOcTip.error) console.error("[Supabase] ocorrencias_tipos:", rOcTip.error);
@@ -3178,6 +3473,8 @@ function irParaView(view){
   if(view==="agenda") initAgenda();
   if(view==="demandas") initDemandas();
   if(view==="saude") initSaude();
+  if(view==="absenteismo") initAbsenteismo();
+  if(view==="auditoriaEpi") initAuditoriaEpi();
   if(view==="gestao") initGestao();
 }
 
@@ -3746,6 +4043,9 @@ let CHECKLIST_GRUPOS = [];
 let CHECKLIST_ITENS_CONFIG = [];
 let OCORRENCIAS_TIPOS = [];
 let ATESTADOS = [];
+let ABSENTEISMO = [];
+let ABSENTEISMO_CATEGORIAS = [];
+let EPI_FICHAS_IMPRESSAS = [];
 let NOTIFICACOES = [];
 let sessoesModalAtual = [];
 let sessaoAbertaModalAtual = null;
@@ -4196,6 +4496,8 @@ function mostrarSubGestao(sub){
   if(sub==="demandas"){ renderOpcoesDemandas(); renderFluxosConfig(); renderTiposDemandaConfig(); }
   if(sub==="disponibilidade"){ renderDisponibilidadeUsuarios(); renderGradeDisponibilidade(); }
   if(sub==="checklist"){ renderGruposChecklist(); renderItensChecklistConfig(); renderTiposOcorrenciaGestao(); }
+  if(sub==="epi") initGestaoEpi();
+  if(sub==="absenteismo") initGestaoAbsenteismo();
 }
 /* =====================================================================
    DEMANDAS — QUADRO KANBAN (ESTILO JIRA / MICROSOFT PLANNER)
@@ -4467,9 +4769,10 @@ function ehAdminOuCoordenador(){ return !!currentUser && (currentUser.perfil==="
 function ehResponsavelDaDemanda(d){ return !!currentUser && !!d && d.responsavelUsuarioId===currentUser.id; }
 function aplicarPermissoesModalDemanda(d){
   const admin = ehAdministrador();
+  const podeClassificar = ehAdminOuCoordenador();
   const responsavel = ehResponsavelDaDemanda(d);
   const podeCampoResp = ehAdminOuCoordenador() || responsavel;
-  document.querySelectorAll("#form-demanda .campo-admin input, #form-demanda .campo-admin select, #form-demanda .campo-admin textarea").forEach(el=>{ el.disabled = !admin; });
+  document.querySelectorAll("#form-demanda .campo-admin input, #form-demanda .campo-admin select, #form-demanda .campo-admin textarea").forEach(el=>{ el.disabled = !podeClassificar; });
   document.querySelectorAll("#form-demanda .campo-resp input, #form-demanda .campo-resp select, #form-demanda .campo-resp textarea").forEach(el=>{ el.disabled = !podeCampoResp; });
   document.getElementById("btn-entregar-demanda").disabled = !podeCampoResp;
   const btnDesfazer = document.getElementById("btn-desfazer-entrega");
@@ -4480,9 +4783,9 @@ function aplicarPermissoesModalDemanda(d){
   btnTimer.title = responsavel ? "" : "Somente o responsável pela demanda pode usar o cronômetro";
 }
 function aplicarPermissaoCriacaoDemandas(){
-  const admin = ehAdministrador();
+  const podeCriar = ehAdminOuCoordenador();
   const btnNova = document.getElementById("btn-nova-demanda");
-  if(btnNova) btnNova.style.display = admin ? "inline-flex" : "none";
+  if(btnNova) btnNova.style.display = podeCriar ? "inline-flex" : "none";
 }
 
 function formatarDuracao(seg){
@@ -4903,7 +5206,7 @@ function popularEtapasModalDemanda(){
   if(etapas.some(e=>String(e.id)===atual)) selEtapa.value = atual;
 }
 async function abrirModalDemanda(id, etapaIdPreDefinida){
-  if(!id && !ehAdministrador()){ alert("Somente o Administrador pode criar novas demandas."); return; }
+  if(!id && !ehAdminOuCoordenador()){ alert("Somente Administrador ou Coordenador podem criar novas demandas."); return; }
   if(timerIntervalIdDemanda){ clearInterval(timerIntervalIdDemanda); timerIntervalIdDemanda=null; }
   sessoesModalAtual = []; sessaoAbertaModalAtual = null;
 
@@ -5496,6 +5799,436 @@ function initSaude(){
   popularFiltrosSaude();
   renderSaudeVisaoGeral();
 }
+/* ---- Gestão da base de EPI (colaboradores + EPI por função) ---- */
+function normalizarTextoComparacao(s){
+  return (s||"").toString().trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+}
+/* ---- Ficha de EPI — página pública, sem login ---- */
+function abrirFichaEpiPublica(){
+  document.getElementById("login-screen").style.display = "none";
+  document.getElementById("ficha-epi-screen").style.display = "block";
+  window.location.hash = "ficha-epi";
+}
+function voltarParaLoginDeFicha(){
+  document.getElementById("ficha-epi-screen").style.display = "none";
+  document.getElementById("login-screen").style.display = "flex";
+  window.location.hash = "";
+}
+function novaBuscaFichaEpi(){
+  document.getElementById("epi-pub-ficha-wrap").style.display = "none";
+  document.getElementById("epi-pub-marcacao-wrap").style.display = "none";
+  document.getElementById("epi-busca-card").style.display = "block";
+  document.getElementById("epi-pub-status").textContent = "";
+  document.getElementById("epi-pub-matricula").value = "";
+  document.getElementById("epi-pub-matricula").focus();
+  colaboradorEpiAtual = null;
+  episEpiAtual = [];
+}
+function voltarParaMarcacaoEpi(){
+  document.getElementById("epi-pub-ficha-wrap").style.display = "none";
+  document.getElementById("epi-pub-marcacao-wrap").style.display = "block";
+}
+let colaboradorEpiAtual = null;
+let episEpiAtual = [];
+async function buscarFichaEpiPublica(){
+  const matricula = document.getElementById("epi-pub-matricula").value.trim();
+  const status = document.getElementById("epi-pub-status");
+  if(!matricula){ status.style.color="var(--vermelho)"; status.textContent = "Digite a matrícula."; return; }
+  status.style.color = "var(--areia-esc)";
+  status.textContent = "Buscando...";
+  try{
+    const { data: colaboradores, error } = await sb.from("colaboradores").select("*").eq("matricula", matricula).order("id", {ascending:false}).limit(1);
+    if(error){ status.style.color="var(--vermelho)"; status.textContent = "Erro ao buscar: "+error.message; return; }
+    if(!colaboradores || !colaboradores.length){
+      status.style.color="var(--vermelho)";
+      status.textContent = "Matrícula não encontrada na base. Confira o número ou fale com o SESMT.";
+      return;
+    }
+    const colab = colaboradores[0];
+    const setorNorm = normalizarTextoComparacao(colab.setor);
+    const cargoNorm = normalizarTextoComparacao(colab.cargo);
+    const { data: todosEpis } = await sb.from("epi_por_funcao").select("*");
+    const epis = (todosEpis||[])
+      .filter(e => normalizarTextoComparacao(e.setor)===setorNorm && normalizarTextoComparacao(e.funcao)===cargoNorm)
+      .sort((a,b)=> a.ordem - b.ordem);
+
+    colaboradorEpiAtual = colab;
+    episEpiAtual = epis;
+    renderizarMarcacaoEpis(colab, epis);
+    document.getElementById("epi-busca-card").style.display = "none";
+    document.getElementById("epi-pub-marcacao-wrap").style.display = "block";
+    status.textContent = "";
+  }catch(e){
+    status.style.color="var(--vermelho)";
+    status.textContent = "Erro ao buscar: "+e.message;
+  }
+}
+function renderizarMarcacaoEpis(colab, epis){
+  const tbody = document.getElementById("epi-pub-marcacao-tbody");
+  if(!epis.length){
+    tbody.innerHTML = `<tr><td colspan="4" style="color:var(--terracota); text-align:center; padding:14px;">Nenhum EPI padrão cadastrado para "${colab.setor||"—"} / ${colab.cargo||"—"}". A ficha será gerada em branco — consulte o SESMT.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = epis.map((e,idx)=>`
+    <tr>
+      <td style="text-align:center;"><input type="checkbox" id="epi-mk-check-${idx}" onchange="document.getElementById('epi-mk-data-${idx}').disabled = !this.checked; if(this.checked) document.getElementById('epi-mk-data-${idx}').focus();"></td>
+      <td>${e.descricao}</td>
+      <td>${e.ca||"—"}</td>
+      <td><input type="date" id="epi-mk-data-${idx}" disabled style="width:100%;"></td>
+    </tr>
+  `).join("");
+}
+function gerarFichaComEntregas(){
+  const episComEntrega = episEpiAtual.map((e,idx)=>{
+    const check = document.getElementById("epi-mk-check-"+idx);
+    const data = document.getElementById("epi-mk-data-"+idx);
+    const jaTem = check ? check.checked : false;
+    return { ...e, jaEntregue: jaTem, dataEntrega: (jaTem && data.value) ? data.value : null };
+  });
+  document.getElementById("ficha-epi-conteudo").innerHTML = renderizarFichaEpiHtml(colaboradorEpiAtual, episComEntrega);
+  document.getElementById("epi-pub-marcacao-wrap").style.display = "none";
+  document.getElementById("epi-pub-ficha-wrap").style.display = "block";
+  registrarFichaNoHistorico(colaboradorEpiAtual, episComEntrega);
+}
+async function registrarFichaNoHistorico(colab, epis){
+  try{
+    const { data, error } = await sb.from("epi_fichas_impressas").insert({
+      matricula: colab.matricula, nome_colaborador: colab.nome||null, loja: colab.loja||null,
+      setor: colab.setor||null, funcao: colab.cargo||null,
+      itens: epis.map(e=>({descricao:e.descricao, ca:e.ca||null, jaEntregue:!!e.jaEntregue, dataEntrega:e.dataEntrega||null}))
+    }).select().single();
+    if(error){ console.error("[EPI] não foi possível registrar no histórico:", error); return; }
+    if(data && typeof EPI_FICHAS_IMPRESSAS !== "undefined"){
+      EPI_FICHAS_IMPRESSAS.unshift(mapFichaEpiFromDb(data));
+    }
+  }catch(e){ console.error("[EPI] erro ao registrar histórico:", e); }
+}
+function renderizarFichaEpiHtml(colab, epis){
+  const admissaoFmt = colab.admissao ? colab.admissao.split("-").reverse().join("/") : "—";
+  const linhaEpi = (e)=>{
+    const dataFmt = e.dataEntrega ? e.dataEntrega.split("-").reverse().join("/") : "_____/_____/20____";
+    return `<tr>
+      <td>1</td><td class="fe-desc">${e.descricao}</td><td>${e.ca||"—"}</td>
+      <td>${dataFmt}</td><td></td>
+      <td style="font-size:9px;">N(&nbsp;&nbsp;) A(&nbsp;&nbsp;) D(&nbsp;&nbsp;) E(&nbsp;&nbsp;) M(&nbsp;&nbsp;)</td><td></td>
+    </tr>`;
+  };
+  const linhaVazia = `<tr>
+    <td></td><td class="fe-desc"></td><td></td>
+    <td>_____/_____/20____</td><td></td>
+    <td style="font-size:9px;">N(&nbsp;&nbsp;) A(&nbsp;&nbsp;) D(&nbsp;&nbsp;) E(&nbsp;&nbsp;) M(&nbsp;&nbsp;)</td><td></td>
+  </tr>`;
+  const linhasEpiHtml = epis.length ? epis.map(linhaEpi).join("") : `<tr><td colspan="7" style="color:#a15a33;">Nenhum EPI padrão cadastrado para o setor/função "${colab.setor||"—"} / ${colab.cargo||"—"}". Consulte o SESMT.</td></tr>`;
+  const linhasExtras = Array.from({length:4}).map(()=>linhaVazia).join("");
+
+  return `
+    <div class="fe-logo-topo"><img src="${HORTIFRUTI_LOGO_DATAURL}" alt="Hortifruti Natural da Terra"></div>
+    <div class="fe-titulo">Ficha de Registro de Controle de EPI</div>
+
+    <div class="fe-secao">Dados do colaborador</div>
+    <table class="fe-dados-tabela">
+      <tr>
+        <td class="fe-lbl-td" style="width:16%;">Matrícula</td>
+        <td class="fe-lbl-td" style="width:34%;">Nome</td>
+        <td class="fe-lbl-td" style="width:20%;">Loja</td>
+        <td class="fe-lbl-td" style="width:18%;">Setor</td>
+        <td class="fe-lbl-td" style="width:12%;">Admissão</td>
+      </tr>
+      <tr>
+        <td>${colab.matricula}</td>
+        <td>${colab.nome||"—"}</td>
+        <td>${colab.loja||"—"}</td>
+        <td>${colab.setor||"—"}</td>
+        <td>${admissaoFmt}</td>
+      </tr>
+    </table>
+
+    <div class="fe-secao">Termo de responsabilidade</div>
+    <div class="fe-termo">Declaro sob minha inteira responsabilidade a guarda e conservação dos equipamentos de proteção individual constantes nesta ficha-controle. Assumo também a responsabilidade de devolvê-los integralmente ou parcialmente, quando solicitado, ou por ocasião de eventual rescisão de contrato, na data do respectivo aviso de qualquer das partes. Também estou ciente que, na eventualidade de danificar ou extraviar o equipamento por ato doloso ou culposo, estarei sujeito ao desconto do valor em meu salário, conforme parágrafo único do art. 158 da CLT. Também me comprometo a utilizá-los de forma correta e de acordo com as instruções de treinamento referentes ao uso correto, guarda, conservação e higienização dos EPIs, recebidas na presente data, fornecidas por profissional Técnico de Segurança do Trabalho. Também estou ciente que a não utilização dos mesmos em minhas atividades profissionais é ato faltoso e passível de punições legais e disciplinares de acordo com a Consolidação das Leis do Trabalho (CLT) – Capítulo V – Seção I – Art. 158º c/c Norma Regulamentadora (NR) - NR-1 e NR-6, alínea 6.7, disciplinadas pela Portaria MTb. nº 3.214/78 e artigo 191, itens I e II da CLT e súmula n. 80 do TST.</div>
+    <div class="fe-assinatura-linha">
+      <div>${colab.nome||"—"}<br><span style="font-size:9px; text-transform:uppercase; color:#666;">Nome do colaborador</span></div>
+      <div>&nbsp;<br><span style="font-size:9px; text-transform:uppercase; color:#666;">Rubrica</span></div>
+    </div>
+
+    <div class="fe-secao">EPIs descartáveis disponíveis no setor</div>
+    <div class="fe-check-linha">EPIs disponibilizados para o colaborador no setor: (&nbsp;&nbsp;) Máscara cirúrgica &nbsp;&nbsp; (&nbsp;&nbsp;) Luvas descartáveis de procedimento &nbsp;&nbsp; (&nbsp;&nbsp;) Toucas descartáveis<br><span style="font-size:10px; color:#555;">Reconheço e afirmo que os itens descartáveis acima sempre estão disponíveis em meu setor, com livre acesso.</span></div>
+
+    <div class="fe-secao">Preenchimento na entrega e devolução</div>
+    <table class="fe-tabela-epi">
+      <thead>
+        <tr>
+          <th colspan="3">Preenchimento na entrega</th><th></th><th></th><th colspan="2">Preenchimento na devolução</th>
+        </tr>
+        <tr>
+          <th>Quantidade</th><th>Descrição do EPI</th><th>C.A</th><th>Data da entrega</th><th>Rubrica</th><th>Motivo</th><th>Rubrica</th>
+        </tr>
+      </thead>
+      <tbody>${linhasEpiHtml}${linhasExtras}</tbody>
+    </table>
+    <div class="fe-legenda">Legenda de motivos de devolução: <b>N</b> - Desgaste normal &nbsp;|&nbsp; <b>A</b> - Desgaste anormal &nbsp;|&nbsp; <b>D</b> - Desligamento do colaborador &nbsp;|&nbsp; <b>E</b> - Extravio &nbsp;|&nbsp; <b>M</b> - Dano por mau uso</div>
+
+    <div class="fe-secao">Conferência de devolução após desligamento</div>
+    <table class="fe-dados-tabela">
+      <tr>
+        <td class="fe-lbl-td" style="width:35%;">Nome do colaborador</td>
+        <td class="fe-lbl-td" style="width:45%;">Declaro que devolvi todos os EPIs entregues a mim durante o meu tempo na empresa</td>
+        <td class="fe-lbl-td" style="width:20%;">Desligamento</td>
+      </tr>
+      <tr>
+        <td>${colab.nome||"—"}</td>
+        <td></td>
+        <td>_____/_____/20____</td>
+      </tr>
+    </table>
+  `;
+}
+
+/* =====================================================================
+   AUDITORIA DE FICHAS DE EPI — histórico, habilitação e relatório em PDF
+   ===================================================================== */
+function lojasSobResponsabilidade(){
+  if(!currentUser) return [];
+  return UNIDADES.filter(u=> u.tecnicoResponsavel && normalizarTextoComparacao(u.tecnicoResponsavel)===normalizarTextoComparacao(currentUser.nome)).map(u=>u.nome);
+}
+function dadosFiltradosAuditoriaEpi(){
+  const loja = document.getElementById("aud-f-loja")?.value;
+  const status = document.getElementById("aud-f-status")?.value;
+  const busca = (document.getElementById("aud-f-busca")?.value||"").trim().toLowerCase();
+  const restringirPorResponsabilidade = !ehAdminOuCoordenador();
+  const minhasLojas = restringirPorResponsabilidade ? new Set(lojasSobResponsabilidade()) : null;
+  return EPI_FICHAS_IMPRESSAS.filter(f=>{
+    if(restringirPorResponsabilidade && !minhasLojas.has(f.loja)) return false;
+    if(loja && f.loja!==loja) return false;
+    if(status && f.statusAuditoria!==status) return false;
+    if(busca){
+      const alvo = [f.nomeColaborador, f.matricula].filter(Boolean).join(" ").toLowerCase();
+      if(!alvo.includes(busca)) return false;
+    }
+    return true;
+  });
+}
+function popularFiltrosAuditoriaEpi(){
+  const restringirPorResponsabilidade = !ehAdminOuCoordenador();
+  const base = restringirPorResponsabilidade
+    ? EPI_FICHAS_IMPRESSAS.filter(f=>lojasSobResponsabilidade().includes(f.loja))
+    : EPI_FICHAS_IMPRESSAS;
+  fillSelect("aud-f-loja", [...new Set(base.map(f=>f.loja).filter(Boolean))].sort());
+}
+function limparFiltrosAuditoriaEpi(){
+  ["aud-f-loja","aud-f-status","aud-f-busca"].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=""; });
+  renderAuditoriaEpi();
+}
+function initAuditoriaEpi(){
+  popularFiltrosAuditoriaEpi();
+  renderAuditoriaEpi();
+}
+function renderAuditoriaEpi(){
+  const linhas = dadosFiltradosAuditoriaEpi().slice().sort((a,b)=> (b.impressaEm||"").localeCompare(a.impressaEm||""));
+  document.getElementById("aud-kpi-total").textContent = linhas.length;
+  document.getElementById("aud-kpi-pendentes").textContent = linhas.filter(f=>f.statusAuditoria==="Pendente").length;
+  document.getElementById("aud-kpi-habilitadas").textContent = linhas.filter(f=>f.statusAuditoria==="Habilitada").length;
+  document.getElementById("aud-kpi-divergencias").textContent = linhas.filter(f=>f.statusAuditoria==="Divergência").length;
+
+  const tbody = document.getElementById("tbl-auditoria-epi");
+  if(!linhas.length){
+    tbody.innerHTML = `<tr><td colspan="9"><div class="lista-vazio"><b>Nenhuma ficha encontrada</b>Fichas aparecem aqui automaticamente assim que alguém imprime pela página pública.</div></td></tr>`;
+    return;
+  }
+  const corStatus = {Pendente:"var(--areia-esc)", "Habilitada":"var(--verde-viv)", "Divergência":"var(--vermelho)"};
+  tbody.innerHTML = linhas.map(f=>`
+    <tr>
+      <td class="col-sticky" style="min-width:200px; max-width:260px;">${f.nomeColaborador||"—"}</td>
+      <td>${f.matricula}</td>
+      <td>${f.loja||"—"}</td>
+      <td>${f.setor||"—"}</td>
+      <td>${f.itens.length} item(ns)</td>
+      <td>${f.impressaEm ? new Date(f.impressaEm).toLocaleString("pt-BR") : "—"}</td>
+      <td><span class="td-badge" style="background:${corStatus[f.statusAuditoria]||'#999'};">${f.statusAuditoria}</span></td>
+      <td style="max-width:200px;" title="${f.observacoesAuditoria||''}">${(f.observacoesAuditoria||"—").slice(0,40)}</td>
+      <td style="white-space:nowrap;">
+        <button type="button" class="small-btn" onclick="habilitarFichaEpi(${f.id})">Habilitar</button>
+        <button type="button" class="small-btn danger" onclick="marcarDivergenciaFichaEpi(${f.id})">Divergência</button>
+      </td>
+    </tr>
+  `).join("");
+}
+async function habilitarFichaEpi(id){
+  const { error } = await sb.from("epi_fichas_impressas").update({
+    status_auditoria:"Habilitada", auditado_por: currentUser?currentUser.id:null, auditado_em: new Date().toISOString(), observacoes_auditoria: null
+  }).eq("id", id);
+  if(error){ alert("Erro ao habilitar: "+error.message); return; }
+  const item = EPI_FICHAS_IMPRESSAS.find(f=>f.id===id);
+  if(item){ item.statusAuditoria="Habilitada"; item.observacoesAuditoria=""; }
+  mostrarToast("Ficha habilitada.");
+  renderAuditoriaEpi();
+}
+async function marcarDivergenciaFichaEpi(id){
+  const motivo = prompt("Descreva a divergência encontrada nesta ficha:");
+  if(motivo===null) return;
+  if(!motivo.trim()){ alert("Descreva a divergência antes de confirmar."); return; }
+  const { error } = await sb.from("epi_fichas_impressas").update({
+    status_auditoria:"Divergência", auditado_por: currentUser?currentUser.id:null, auditado_em: new Date().toISOString(), observacoes_auditoria: motivo.trim()
+  }).eq("id", id);
+  if(error){ alert("Erro ao registrar divergência: "+error.message); return; }
+  const item = EPI_FICHAS_IMPRESSAS.find(f=>f.id===id);
+  if(item){ item.statusAuditoria="Divergência"; item.observacoesAuditoria=motivo.trim(); }
+  mostrarToast("Divergência registrada.");
+  renderAuditoriaEpi();
+}
+function exportarRelatorioAuditoriaEpi(){
+  const linhas = dadosFiltradosAuditoriaEpi().slice().sort((a,b)=> (a.loja||"").localeCompare(b.loja||""));
+  if(!linhas.length){ alert("Não há fichas para gerar relatório com os filtros atuais."); return; }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({unit:"pt", format:"a4"});
+  const pageW = doc.internal.pageSize.getWidth();
+  const pageH = doc.internal.pageSize.getHeight();
+  let y = 60;
+
+  try{ doc.addImage(HORTIFRUTI_LOGO_DATAURL, "PNG", 40, 30, 90, 31); }catch(e){}
+  doc.setFont("helvetica","bold"); doc.setFontSize(16);
+  doc.text("Relatório de Auditoria — Fichas de EPI", pageW-40, 48, {align:"right"});
+  doc.setFont("helvetica","normal"); doc.setFontSize(9.5); doc.setTextColor(120,105,85);
+  doc.text("Gerado em "+new Date().toLocaleString("pt-BR")+" por "+(currentUser?currentUser.nome:"—"), pageW-40, 62, {align:"right"});
+  doc.setTextColor(30,30,30);
+  y = 90;
+  doc.setDrawColor(210,195,165); doc.line(40, y, pageW-40, y); y += 22;
+
+  const total = linhas.length;
+  const pendentes = linhas.filter(f=>f.statusAuditoria==="Pendente").length;
+  const habilitadas = linhas.filter(f=>f.statusAuditoria==="Habilitada").length;
+  const divergencias = linhas.filter(f=>f.statusAuditoria==="Divergência").length;
+  doc.setFont("helvetica","bold"); doc.setFontSize(11);
+  doc.text("Total: "+total+"   |   Habilitadas: "+habilitadas+"   |   Pendentes: "+pendentes+"   |   Divergências: "+divergencias, 40, y);
+  y += 26;
+
+  linhas.forEach(f=>{
+    const linhasObs = f.observacoesAuditoria ? doc.splitTextToSize("Observação: "+f.observacoesAuditoria, pageW-120) : [];
+    const altura = 40 + linhasObs.length*11;
+    if(y + altura > pageH-60){ doc.addPage(); y = 50; }
+    const yTopo = y;
+    doc.setDrawColor(225,215,195); doc.setFillColor(253,251,246);
+    doc.roundedRect(40, yTopo-14, pageW-80, altura, 5, 5, "FD");
+
+    doc.setFont("helvetica","bold"); doc.setFontSize(10.5); doc.setTextColor(30,30,30);
+    doc.text((f.nomeColaborador||"—")+" — matrícula "+f.matricula, 50, y);
+    const corSt = f.statusAuditoria==="Habilitada" ? [0,115,63] : f.statusAuditoria==="Divergência" ? [238,49,53] : [159,129,103];
+    doc.setTextColor(...corSt); doc.setFont("helvetica","bold"); doc.setFontSize(9);
+    doc.text(f.statusAuditoria, pageW-90, y);
+
+    y += 14;
+    doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(90,75,60);
+    doc.text("Loja: "+(f.loja||"—")+"   Setor: "+(f.setor||"—")+"   Itens: "+f.itens.length+"   Impressa em: "+(f.impressaEm ? new Date(f.impressaEm).toLocaleDateString("pt-BR") : "—"), 50, y);
+
+    if(linhasObs.length){
+      y += 12;
+      doc.setTextColor(190,40,40);
+      linhasObs.forEach(l=>{ doc.text(l, 50, y, {maxWidth:pageW-120}); y += 11; });
+    }
+    y = yTopo + altura + 12;
+  });
+
+  doc.save("auditoria_epi_"+new Date().toISOString().slice(0,10)+".pdf");
+}
+
+function initGestaoEpi(){
+  const linkEl = document.getElementById("epi-link-publico");
+  if(linkEl) linkEl.textContent = window.location.origin + window.location.pathname + "#ficha-epi";
+  atualizarKpisEpi();
+}
+async function atualizarKpisEpi(){
+  const { count: qtdColab } = await sb.from("colaboradores").select("*", {count:"exact", head:true});
+  const { data: combos } = await sb.from("epi_por_funcao").select("setor,funcao");
+  const setColab = document.getElementById("epi-kpi-colaboradores");
+  const setCombo = document.getElementById("epi-kpi-combinacoes");
+  if(setColab) setColab.textContent = qtdColab || 0;
+  if(setCombo) setCombo.textContent = new Set((combos||[]).map(c=>c.setor+"|"+c.funcao)).size;
+}
+function parseListaEpiPorFuncaoSheet(sheet){
+  const linhas = XLSX.utils.sheet_to_json(sheet, {header:1, defval:null});
+  const registros = [];
+  let setorAtual = null;
+  linhas.forEach(row=>{
+    const [colSetor, colFuncaoSetor, colEpis] = row;
+    if(colSetor) setorAtual = String(colSetor).trim();
+    if(!colFuncaoSetor || !colEpis || !setorAtual) return;
+    const textoFuncao = String(colFuncaoSetor).trim();
+    if(["VOLTAR","LISTA DE EPIS POR FUNÇÃO"].includes(textoFuncao.toUpperCase())) return;
+    const funcao = textoFuncao.split(" - ")[0].trim();
+    String(colEpis).split(/\n|\\n/).map(l=>l.trim()).filter(Boolean).forEach((linha, idx)=>{
+      const m = linha.match(/^(\S+)\s*-\s*(.+)$/);
+      registros.push({
+        setor: setorAtual, funcao,
+        ca: m ? m[1].trim() : null,
+        descricao: (m ? m[2] : linha).trim(),
+        ordem: idx
+      });
+    });
+  });
+  return registros;
+}
+async function importarBaseEpi(){
+  const input = document.getElementById("epi-import-file");
+  const status = document.getElementById("epi-import-status");
+  const file = input.files[0];
+  if(!file){ status.style.color="var(--vermelho)"; status.textContent = "Selecione um arquivo primeiro."; return; }
+  status.style.color = "var(--areia-esc)";
+  status.textContent = "Lendo o arquivo...";
+  try{
+    const buf = await file.arrayBuffer();
+    const wb = XLSX.read(buf, {type:"array", cellDates:true});
+    let colaboradores = [];
+    let epis = [];
+
+    if(wb.SheetNames.includes("BASE COLABORADORES")){
+      const rows = XLSX.utils.sheet_to_json(wb.Sheets["BASE COLABORADORES"], {defval:null});
+      colaboradores = rows.filter(r=>r["Nº pessoal"]!=null).map(r=>({
+        matricula: String(r["Nº pessoal"]).trim(),
+        nome: r["Nome do Empregado"] || null,
+        loja: r["Desc. Área de RH"] || null,
+        setor: r["Desc. Cent. custo"] || null,
+        cargo: r["Desc. Cargo"] || null,
+        admissao: normalizarDataImportacao(r["Dt. Admissão"])
+      }));
+    }
+    if(wb.SheetNames.includes("LISTA DE EPI POR FUNÇÃO")){
+      epis = parseListaEpiPorFuncaoSheet(wb.Sheets["LISTA DE EPI POR FUNÇÃO"]);
+    }
+
+    if(!colaboradores.length && !epis.length){
+      status.style.color = "var(--vermelho)";
+      status.textContent = 'Não encontrei as abas "BASE COLABORADORES" e/ou "LISTA DE EPI POR FUNÇÃO" nesse arquivo.';
+      return;
+    }
+
+    const substituir = document.getElementById("epi-import-substituir").checked;
+    if(substituir){
+      status.textContent = "Limpando a base atual...";
+      if(colaboradores.length){ const {error} = await sb.from("colaboradores").delete().neq("id",0); if(error){ status.style.color="var(--vermelho)"; status.textContent="Erro ao limpar colaboradores: "+error.message; return; } }
+      if(epis.length){ const {error} = await sb.from("epi_por_funcao").delete().neq("id",0); if(error){ status.style.color="var(--vermelho)"; status.textContent="Erro ao limpar EPI por função: "+error.message; return; } }
+    }
+
+    const LOTE = 500;
+    for(let i=0; i<colaboradores.length; i+=LOTE){
+      status.textContent = "Importando colaboradores... "+Math.min(i+LOTE,colaboradores.length)+" de "+colaboradores.length;
+      const { error } = await sb.from("colaboradores").insert(colaboradores.slice(i,i+LOTE));
+      if(error){ status.style.color="var(--vermelho)"; status.textContent = "Erro ao importar colaboradores: "+error.message; return; }
+    }
+    for(let i=0; i<epis.length; i+=LOTE){
+      status.textContent = "Importando EPI por função... "+Math.min(i+LOTE,epis.length)+" de "+epis.length;
+      const { error } = await sb.from("epi_por_funcao").insert(epis.slice(i,i+LOTE));
+      if(error){ status.style.color="var(--vermelho)"; status.textContent = "Erro ao importar EPI por função: "+error.message; return; }
+    }
+
+    status.style.color = "var(--verde-esc)";
+    status.textContent = colaboradores.length+" colaborador(es) e "+epis.length+" item(ns) de EPI importados com sucesso!";
+    input.value = "";
+    atualizarKpisEpi();
+  }catch(e){
+    status.style.color = "var(--vermelho)";
+    status.textContent = "Erro ao processar o arquivo: "+e.message;
+  }
+}
+
 function normalizarDataImportacao(v){
   if(v == null || v === "") return null;
   if(v instanceof Date) return v.toISOString().slice(0,10);
@@ -5719,6 +6452,378 @@ function renderSaudeRegistros(){
     <td>${formataData(a.afastamentoFim)}</td>
     <td>${a.duracaoDias||0}</td>
   </tr>`).join("");
+}
+
+/* =====================================================================
+   ABSENTEÍSMO — dashboard, importação e categorias (dados reais do Supabase)
+   ===================================================================== */
+/* =====================================================================
+   ABSENTEÍSMO — dashboard, importação e categorias (dados reais do Supabase,
+   calculados pela própria plataforma a partir dos registros brutos)
+   ===================================================================== */
+const ABS_CATEGORIAS = [
+  {nome:"Abono dia", cor:"#faa61a"},
+  {nome:"Faltas não justificadas", cor:"#ee3135"},
+  {nome:"Acidentes de Trabalho", cor:"#981b22"},
+  {nome:"Licença Médica", cor:"#00733f"},
+  {nome:"Licença Médica Continuada", cor:"#a15a33"}
+];
+let absCategoriaAtiva = "Todos";
+let absMetricaAtiva = "quantidade";
+
+function regionalDaLoja(loja){
+  const u = UNIDADES.find(x => normalizarTextoComparacao(x.nome)===normalizarTextoComparacao(loja));
+  return u ? (u.regional || null) : null;
+}
+function categoriaDoTipoAusencia(tipo){
+  const c = ABSENTEISMO_CATEGORIAS.find(x => x.tipoAusencia===tipo);
+  return c ? c.categoria : null;
+}
+function initAbsenteismo(){
+  renderCategoriaPillsAbsenteismo();
+  renderMetricaPillsAbsenteismo();
+  popularFiltrosAbsenteismo();
+  renderAbsenteismoVisaoGeral();
+}
+function mostrarSubAbsenteismo(sub){
+  document.querySelectorAll("#view-absenteismo .insp-tab").forEach(b=>b.classList.remove("active"));
+  document.querySelector('#view-absenteismo .insp-tab[data-sub="'+sub+'"]').classList.add("active");
+  document.querySelectorAll("#view-absenteismo .insp-sub").forEach(s=>s.classList.remove("active"));
+  document.getElementById("absenteismo-sub-"+sub).classList.add("active");
+  if(sub==="visao") renderAbsenteismoVisaoGeral();
+  else if(sub==="mensal") renderAbsenteismoMensal();
+  else { popularFiltroTipoAbsenteismo(); renderAbsenteismoDetalheTabela(); }
+}
+function renderCategoriaPillsAbsenteismo(){
+  const wrap = document.getElementById("abs-categoria-pills");
+  if(!wrap) return;
+  const opcoes = ["Todos", ...ABS_CATEGORIAS.map(c=>c.nome)];
+  wrap.innerHTML = opcoes.map(c=>`<button type="button" class="sw-btn ${absCategoriaAtiva===c?'ativo sw-aprovado':''}" onclick='selecionarCategoriaAbsenteismo(${JSON.stringify(c)})'>${c}</button>`).join("");
+}
+function renderMetricaPillsAbsenteismo(){
+  const wrap = document.getElementById("abs-metrica-pills");
+  if(!wrap) return;
+  const opcoes = [["quantidade","Quantidade"],["dias","Dias"]];
+  wrap.innerHTML = opcoes.map(([v,rotulo])=>`<button type="button" class="sw-btn ${absMetricaAtiva===v?'ativo sw-aprovado':''}" onclick='selecionarMetricaAbsenteismo(${JSON.stringify(v)})'>${rotulo}</button>`).join("");
+}
+function selecionarCategoriaAbsenteismo(c){
+  absCategoriaAtiva = c;
+  renderCategoriaPillsAbsenteismo();
+  renderAbsenteismoVisaoGeral();
+}
+function selecionarMetricaAbsenteismo(m){
+  absMetricaAtiva = m;
+  renderMetricaPillsAbsenteismo();
+  renderAbsenteismoVisaoGeral();
+}
+function popularFiltrosAbsenteismo(){
+  fillSelect("abs-f-loja", [...new Set(ABSENTEISMO.map(a=>a.loja).filter(Boolean))].sort());
+  fillSelect("abs-f-setor", [...new Set(ABSENTEISMO.map(a=>a.setor).filter(Boolean))].sort());
+  fillSelect("abs-f-regional", [...new Set(UNIDADES.map(u=>u.regional).filter(Boolean))].sort());
+}
+function popularFiltroTipoAbsenteismo(){
+  fillSelect("abs-reg-tipo", [...new Set(ABSENTEISMO.map(a=>a.tipoAusencia).filter(Boolean))].sort());
+}
+function limparFiltrosAbsenteismo(){
+  ["abs-f-loja","abs-f-setor","abs-f-regional","abs-f-de","abs-f-ate"].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=""; });
+  renderAbsenteismoVisaoGeral();
+}
+function dadosFiltradosAbsenteismoBase(){
+  const loja = document.getElementById("abs-f-loja")?.value;
+  const setor = document.getElementById("abs-f-setor")?.value;
+  const regional = document.getElementById("abs-f-regional")?.value;
+  const de = document.getElementById("abs-f-de")?.value;
+  const ate = document.getElementById("abs-f-ate")?.value;
+  return ABSENTEISMO.filter(a=>{
+    if(loja && a.loja!==loja) return false;
+    if(setor && a.setor!==setor) return false;
+    if(regional && regionalDaLoja(a.loja)!==regional) return false;
+    if(de && (!a.dataInicio || a.dataInicio<de)) return false;
+    if(ate && (!a.dataInicio || a.dataInicio>ate)) return false;
+    return true;
+  });
+}
+function somaOuContagem(lista){
+  return absMetricaAtiva==="dias" ? lista.reduce((s,a)=>s+(Number(a.dias)||0), 0) : lista.length;
+}
+function renderGraficoContagemAbsenteismo(key, canvasId, dados, chaveFn, top, cor){
+  const agrupado = {};
+  dados.forEach(a=>{
+    const k = chaveFn(a) || "Não mapeado";
+    if(!agrupado[k]) agrupado[k] = [];
+    agrupado[k].push(a);
+  });
+  const rotuloSerie = absMetricaAtiva==="dias" ? "Dias" : "Registros";
+  const ordenado = Object.entries(agrupado).map(([k,lista])=>[k, somaOuContagem(lista)]).sort((a,b)=>b[1]-a[1]).slice(0, top);
+  criarChart(key, canvasId, {
+    type:"bar",
+    data:{ labels: ordenado.map(o=>o[0]), datasets:[{label:rotuloSerie, data:ordenado.map(o=>Number(o[1].toFixed ? o[1].toFixed(1) : o[1])), backgroundColor:cor, borderRadius:6}]},
+    options:{indexAxis:"y", plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true, ticks:{precision:0}}}}
+  });
+}
+function renderAbsenteismoVisaoGeral(){
+  const dadosBase = dadosFiltradosAbsenteismoBase();
+  const rotuloMetrica = absMetricaAtiva==="dias" ? "dia(s) no período/filtro" : "registro(s) no período/filtro";
+
+  const kpiRow = document.getElementById("abs-kpi-row");
+  if(kpiRow){
+    kpiRow.innerHTML = ABS_CATEGORIAS.map((cat,i)=>{
+      const valor = somaOuContagem(dadosBase.filter(a=>categoriaDoTipoAusencia(a.tipoAusencia)===cat.nome));
+      const classes = ["k1","k2","k4","k5","k2"];
+      return `<div class="kpi ${classes[i]}" style="cursor:pointer;" onclick='selecionarCategoriaAbsenteismo(${JSON.stringify(cat.nome)})'><div class="lbl">${cat.nome}</div><div class="val">${valor}</div><span class="foot">${rotuloMetrica} · clique para detalhar</span></div>`;
+    }).join("");
+  }
+
+  const dadosGrafico = absCategoriaAtiva==="Todos"
+    ? dadosBase.filter(a=> ABS_CATEGORIAS.some(c=>c.nome===categoriaDoTipoAusencia(a.tipoAusencia)))
+    : dadosBase.filter(a=> categoriaDoTipoAusencia(a.tipoAusencia)===absCategoriaAtiva);
+
+  const sufixo = (absCategoriaAtiva!=="Todos" ? " — "+absCategoriaAtiva : " — todos os indicadores") + (absMetricaAtiva==="dias" ? " (em dias)" : " (em registros)");
+  document.getElementById("abs-titulo-loja").textContent = "Por loja"+sufixo;
+  document.getElementById("abs-titulo-setor").textContent = "Por setor"+sufixo;
+  document.getElementById("abs-titulo-regional").textContent = "Por regional"+sufixo;
+
+  renderGraficoContagemAbsenteismo("absLoja", "chart-abs-loja", dadosGrafico, a=>a.loja, 12, "#00733f");
+  renderGraficoContagemAbsenteismo("absSetor", "chart-abs-setor", dadosGrafico, a=>a.setor, 12, "#faa61a");
+  renderGraficoContagemAbsenteismo("absRegional", "chart-abs-regional", dadosGrafico, a=>regionalDaLoja(a.loja), 10, "#ee3135");
+
+  const porLoja = {};
+  dadosGrafico.forEach(a=>{
+    if(!porLoja[a.loja]) porLoja[a.loja] = {registros:0, dias:0};
+    porLoja[a.loja].registros += 1;
+    porLoja[a.loja].dias += Number(a.dias)||0;
+  });
+  const rankingOrdenado = Object.entries(porLoja).sort((a,b)=>a[1].dias-b[1].dias);
+  const tbodyRanking = document.getElementById("tbl-abs-ranking");
+  if(tbodyRanking){
+    tbodyRanking.innerHTML = rankingOrdenado.map(([loja,v],idx)=>`
+      <tr><td>${idx+1}</td><td>${loja}</td><td>${v.registros}</td><td>${v.dias.toFixed(1)}</td><td>${v.registros? (v.dias/v.registros).toFixed(2) : "0"}</td></tr>
+    `).join("") || '<tr><td colspan="5" style="text-align:center; padding:14px; color:var(--areia-esc);">Nenhum dado.</td></tr>';
+  }
+}
+function mesDaData(iso){
+  if(!iso) return null;
+  return iso.slice(0,7)+"-01";
+}
+function renderAbsenteismoMensal(){
+  const porMes = {};
+  ABSENTEISMO.forEach(a=>{
+    const cat = categoriaDoTipoAusencia(a.tipoAusencia);
+    if(!cat) return;
+    const mes = mesDaData(a.dataInicio);
+    if(!mes) return;
+    if(!porMes[mes]) porMes[mes] = {};
+    porMes[mes][cat] = (porMes[mes][cat]||0)+1;
+  });
+  const meses = Object.keys(porMes).sort();
+
+  criarChart("absMensal", "chart-abs-mensal", {
+    type:"line",
+    data:{
+      labels: meses.map(m=> new Date(m+"T00:00:00").toLocaleDateString("pt-BR",{month:"short", year:"2-digit"})),
+      datasets: ABS_CATEGORIAS.map(cat=>({
+        label: cat.nome, data: meses.map(m=>porMes[m][cat.nome]||0), borderColor: cat.cor, backgroundColor: cat.cor, tension:.3, fill:false
+      }))
+    },
+    options:{plugins:{legend:{position:"bottom", labels:{font:{size:10}}}}, scales:{y:{beginAtZero:true}}}
+  });
+  const tbody = document.getElementById("tbl-abs-mensal");
+  if(tbody){
+    tbody.innerHTML = meses.map(m=>{
+      const linha = ABS_CATEGORIAS.map(cat=>porMes[m][cat.nome]||0);
+      const total = linha.reduce((s,v)=>s+v,0);
+      return `<tr>
+        <td>${new Date(m+"T00:00:00").toLocaleDateString("pt-BR",{month:"long", year:"numeric"})}</td>
+        ${linha.map(v=>`<td>${v}</td>`).join("")}
+        <td><b>${total}</b></td>
+      </tr>`;
+    }).join("") || '<tr><td colspan="7" style="text-align:center; padding:14px; color:var(--areia-esc);">Nenhum dado.</td></tr>';
+  }
+}
+let ordenacaoAbsDetalhe = {campo:"totalDias", dir:-1};
+function ordenarAbsenteismoDetalhe(campo){
+  if(ordenacaoAbsDetalhe.campo===campo) ordenacaoAbsDetalhe.dir *= -1;
+  else ordenacaoAbsDetalhe = {campo, dir:1};
+  renderAbsenteismoDetalheTabela();
+}
+function agregadoPorLojaSetor(){
+  const agrupado = {};
+  ABSENTEISMO.forEach(a=>{
+    const chave = a.loja+"|"+a.setor;
+    if(!agrupado[chave]) agrupado[chave] = {loja:a.loja, setor:a.setor, porCategoria:{}, totalAusencias:0, totalDias:0};
+    const acc = agrupado[chave];
+    const cat = categoriaDoTipoAusencia(a.tipoAusencia);
+    if(cat) acc.porCategoria[cat] = (acc.porCategoria[cat]||0)+1;
+    acc.totalAusencias += 1;
+    acc.totalDias += Number(a.dias)||0;
+  });
+  return Object.values(agrupado).map(d=>({
+    ...d,
+    mediaDias: d.totalAusencias ? d.totalDias/d.totalAusencias : 0
+  }));
+}
+function renderAbsenteismoDetalheTabela(){
+  const tbody = document.getElementById("tbl-abs-detalhe");
+  if(!tbody) return;
+  const busca = (document.getElementById("abs-busca")?.value||"").trim().toLowerCase();
+  let linhas = agregadoPorLojaSetor().filter(d=>{
+    if(!busca) return true;
+    return (d.loja+" "+d.setor).toLowerCase().includes(busca);
+  });
+  const {campo, dir} = ordenacaoAbsDetalhe;
+  linhas = linhas.slice().sort((a,b)=>{
+    let va = campo==="loja"||campo==="setor" ? a[campo] : (a[campo] ?? 0);
+    let vb = campo==="loja"||campo==="setor" ? b[campo] : (b[campo] ?? 0);
+    if(typeof va === "string"){ va=va.toLowerCase(); vb=(vb||"").toLowerCase(); }
+    if(va<vb) return -1*dir;
+    if(va>vb) return 1*dir;
+    return 0;
+  });
+  const contador = document.getElementById("abs-reg-contador");
+  if(contador) contador.textContent = linhas.length+" combinação(ões) loja+setor.";
+  if(!linhas.length){
+    tbody.innerHTML = `<tr><td colspan="10"><div class="lista-vazio"><b>Nenhum resultado</b>Ajuste a busca ou importe os dados em Gestão › Absenteísmo.</div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = linhas.map(d=>`<tr>
+    <td class="col-sticky" style="min-width:200px; max-width:260px;">${d.loja}</td>
+    <td>${d.setor}</td>
+    <td>${d.porCategoria["Abono dia"]||0}</td>
+    <td>${d.porCategoria["Acidentes de Trabalho"]||0}</td>
+    <td>${d.porCategoria["Faltas não justificadas"]||0}</td>
+    <td>${d.porCategoria["Licença Médica"]||0}</td>
+    <td>${d.porCategoria["Licença Médica Continuada"]||0}</td>
+    <td><b>${d.totalAusencias}</b></td>
+    <td>${d.totalDias.toFixed(1)}</td>
+    <td>${d.mediaDias.toFixed(2)}</td>
+  </tr>`).join("");
+}
+
+/* ---- Gestão de Absenteísmo: importação do relatório BRUTO + mapeamento de categorias ---- */
+function normalizarTextoAbsenteismo(s){
+  return (s||"").toString().trim();
+}
+function initGestaoAbsenteismo(){
+  document.getElementById("abs-kpi-total-base").textContent = ABSENTEISMO.length;
+  renderTabelaCategoriasAbsenteismo();
+}
+function renderTabelaCategoriasAbsenteismo(){
+  const tbody = document.getElementById("tbl-abs-categorias");
+  if(!tbody) return;
+  const ordenado = ABSENTEISMO_CATEGORIAS.slice().sort((a,b)=> (a.categoria?0:1)-(b.categoria?0:1) || a.tipoAusencia.localeCompare(b.tipoAusencia));
+  tbody.innerHTML = ordenado.map(c=>`
+    <tr>
+      <td>${c.tipoAusencia}</td>
+      <td><select onchange="atualizarCategoriaAbsenteismo(${c.id}, this.value)">
+        <option value="">Sem categoria</option>
+        ${ABS_CATEGORIAS.map(cat=>`<option value="${cat.nome}" ${c.categoria===cat.nome?"selected":""}>${cat.nome}</option>`).join("")}
+      </select></td>
+    </tr>
+  `).join("") || '<tr><td colspan="2" style="text-align:center; padding:14px; color:var(--areia-esc);">Importe uma planilha para ver os tipos de ausência encontrados.</td></tr>';
+}
+async function atualizarCategoriaAbsenteismo(id, categoria){
+  const { error } = await sb.from("absenteismo_categorias").update({categoria: categoria||null}).eq("id", id);
+  if(error){ alert("Erro ao atualizar categoria: "+error.message); return; }
+  const item = ABSENTEISMO_CATEGORIAS.find(c=>c.id===id);
+  if(item) item.categoria = categoria || null;
+  mostrarToast("Categoria atualizada.");
+}
+async function importarAbsenteismoBruto(){
+  const input = document.getElementById("abs-import-file");
+  const status = document.getElementById("abs-import-status");
+  const file = input.files[0];
+  if(!file){ status.style.color="var(--vermelho)"; status.textContent = "Selecione um arquivo primeiro."; return; }
+  status.style.color = "var(--areia-esc)";
+  status.textContent = "Lendo o arquivo...";
+  try{
+    const buf = await file.arrayBuffer();
+    const wb = XLSX.read(buf, {type:"array", cellDates:true});
+    const nomeAba = wb.SheetNames.includes("GERAL") ? "GERAL" : wb.SheetNames[0];
+    const linhas = XLSX.utils.sheet_to_json(wb.Sheets[nomeAba], {header:1, defval:null});
+    if(!linhas.length){ status.style.color="var(--vermelho)"; status.textContent = "A planilha está vazia."; return; }
+
+    const registrosBrutos = linhas.slice(1).filter(r=> r[17]); // "Tipo de ausência ou presença" preenchido
+    status.textContent = "Processando "+registrosBrutos.length+" linha(s)...";
+
+    // canoniza a grafia de loja/setor GLOBALMENTE (corrige inconsistências de maiúscula/minúscula e acentuação
+    // que existem na exportação original, ex.: "Adm cafe/lanchonete" vs "Adm Café/Lanchonete")
+    const pesoLoja = {}, pesoSetor = {};
+    registrosBrutos.forEach(r=>{
+      const loja = normalizarTextoAbsenteismo(r[5]), setor = normalizarTextoAbsenteismo(r[13]);
+      const chaveLoja = normalizarTextoComparacao(loja), chaveSetor = normalizarTextoComparacao(setor);
+      if(loja){ pesoLoja[chaveLoja] = pesoLoja[chaveLoja]||{}; pesoLoja[chaveLoja][loja] = (pesoLoja[chaveLoja][loja]||0)+1; }
+      if(setor){ pesoSetor[chaveSetor] = pesoSetor[chaveSetor]||{}; pesoSetor[chaveSetor][setor] = (pesoSetor[chaveSetor][setor]||0)+1; }
+    });
+    const canonLoja = {}, canonSetor = {};
+    Object.entries(pesoLoja).forEach(([k,v])=>{ canonLoja[k] = Object.entries(v).sort((a,b)=>b[1]-a[1])[0][0]; });
+    Object.entries(pesoSetor).forEach(([k,v])=>{ canonSetor[k] = Object.entries(v).sort((a,b)=>b[1]-a[1])[0][0]; });
+
+    // deduplicar por chave natural
+    const vistos = new Set();
+    const registros = [];
+    registrosBrutos.forEach(r=>{
+      const matricula = r[0]!=null ? String(r[0]).trim() : null;
+      if(!matricula) return;
+      const dataInicio = normalizarDataImportacao(r[20]);
+      const dataFim = normalizarDataImportacao(r[21]);
+      const tipo = String(r[17]).trim();
+      const dias = Number(r[18])||0;
+      const chave = matricula+"|"+tipo+"|"+dataInicio+"|"+dataFim+"|"+dias;
+      if(vistos.has(chave)) return;
+      vistos.add(chave);
+      const lojaBruta = normalizarTextoAbsenteismo(r[5]), setorBruto = normalizarTextoAbsenteismo(r[13]);
+      registros.push({
+        matricula, nome: r[1]||null,
+        loja: canonLoja[normalizarTextoComparacao(lojaBruta)] || lojaBruta || null,
+        setor: canonSetor[normalizarTextoComparacao(setorBruto)] || setorBruto || null,
+        funcao: r[16]||null, tipo_ausencia: tipo, dias, horas: Number(r[19])||0,
+        data_inicio: dataInicio, data_fim: dataFim
+      });
+    });
+
+    if(!registros.length){
+      status.style.color = "var(--vermelho)";
+      status.textContent = 'Nenhuma linha com "Tipo de ausência ou presença" preenchido foi encontrada.';
+      return;
+    }
+
+    const tiposConhecidos = new Set(ABSENTEISMO_CATEGORIAS.map(c=>c.tipoAusencia));
+    const tiposNovos = [...new Set(registros.map(r=>r.tipo_ausencia))].filter(t=>!tiposConhecidos.has(t));
+    if(tiposNovos.length){
+      const { data: catsNovas, error: eCat } = await sb.from("absenteismo_categorias").insert(tiposNovos.map(t=>({tipo_ausencia:t, categoria:null}))).select();
+      if(!eCat && catsNovas) ABSENTEISMO_CATEGORIAS = ABSENTEISMO_CATEGORIAS.concat(catsNovas.map(c=>({id:c.id, tipoAusencia:c.tipo_ausencia, categoria:c.categoria})));
+    }
+
+    const LOTE = 500;
+    let inseridos = 0, ignorados = 0;
+    for(let i=0; i<registros.length; i+=LOTE){
+      const lote = registros.slice(i, i+LOTE);
+      status.textContent = "Importando... "+Math.min(i+LOTE, registros.length)+" de "+registros.length;
+      const { data, error } = await sb.from("absenteismo")
+        .upsert(lote, {onConflict: "matricula,tipo_ausencia,data_inicio,data_fim,dias", ignoreDuplicates: true})
+        .select();
+      if(error){ status.style.color="var(--vermelho)"; status.textContent = "Erro ao importar (parou em "+inseridos+" registros): "+error.message; return; }
+      const novos = data||[];
+      inseridos += novos.length;
+      ignorados += lote.length - novos.length;
+      novos.forEach(a=>{
+        ABSENTEISMO.push({
+          id:a.id, matricula:a.matricula, nome:a.nome, loja:a.loja, setor:a.setor, funcao:a.funcao,
+          tipoAusencia:a.tipo_ausencia, dias:Number(a.dias)||0, horas:Number(a.horas)||0,
+          dataInicio:a.data_inicio, dataFim:a.data_fim
+        });
+      });
+    }
+
+    status.style.color = "var(--verde-esc)";
+    status.textContent = inseridos+" registro(s) novo(s) importado(s). "+ignorados+" já existiam na base e foram descartados automaticamente.";
+    input.value = "";
+    document.getElementById("abs-kpi-total-base").textContent = ABSENTEISMO.length;
+    renderTabelaCategoriasAbsenteismo();
+  }catch(e){
+    status.style.color = "var(--vermelho)";
+    status.textContent = "Erro ao processar o arquivo: "+e.message;
+  }
 }
 
 function initGestao(){
@@ -7082,14 +8187,14 @@ function renderGradeMensal(){
 function renderUsuarios(){
   const tb = document.getElementById("tbl-usuarios");
   tb.innerHTML="";
-  const nomesModulo = {lancamento:"Acidentes e Incidentes", inspecoes:"Inspeções", agenda:"Agenda", demandas:"Demandas", gestao:"Gestão"};
+  const nomesModulo = {lancamento:"Acidentes e Incidentes", inspecoes:"Inspeções", agenda:"Agenda", demandas:"Demandas", saude:"Saúde", absenteismo:"Absenteísmo", auditoriaEpi:"Auditoria EPI", gestao:"Gestão"};
   USUARIOS.forEach(u=>{
     tb.innerHTML += `<tr>
       <td>${u.foto? `<img src="${u.foto}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;">` : `<div style="width:32px;height:32px;border-radius:50%;background:var(--areia-cla);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--marrom-esc);font-size:13px;">${u.nome.charAt(0).toUpperCase()}</div>`}</td>
       <td>${u.nome}</td>
       <td>${u.login}</td>
       <td><span class="perfil-tag ${u.perfil.replace(' ','')}" style="background:${u.perfil==='Administrador'?'#981b22':u.perfil==='Coordenador'?'#a15a33':'#00733f'}">${u.perfil}</span></td>
-      <td>${u.modulos.map(m=>nomesModulo[m]).join(", ")}</td>
+      <td>${(u.modulos||[]).map(m=>nomesModulo[m]||m).join(", ")}</td>
       <td><span class="status-dot ${u.ativo?'on':'off'}"></span>${u.ativo?'Ativo':'Inativo'}</td>
       <td>
         <button class="small-btn" onclick="abrirModalUsuario('${u.id}')">Editar</button>
