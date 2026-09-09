@@ -8,7 +8,7 @@
 
 <!-- Open Sans (fonte de apoio/leitura, disponível via Google Fonts) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- Chart.js e SheetJS (bibliotecas usadas pelos relatórios e pelo upload de Excel) -->
 <script>
@@ -617,15 +617,15 @@ var PptxGenJS=(S=>{function p(e,l,s,n){return new(s=s||Promise)(function(a,A){fu
 
   --branco:#fffdfa;
   --texto:#3a2e22;
-  --sombra: 0 4px 14px rgba(84,65,47,.10);
-  --sombra-forte: 0 10px 30px rgba(84,65,47,.18);
+  --sombra: 0 2px 10px rgba(84,65,47,.08);
+  --sombra-forte: 0 12px 32px rgba(84,65,47,.16);
 
   /* ---- tipografia ---- */
-  --f-display:"Burford Rustic", Georgia, "Iowan Old Style", serif;
-  --f-script:"Blog Script", "Segoe Script", "Bradley Hand", cursive;
-  --f-draws:"Bellfort Draws", "Bellfort", Georgia, serif;
-  --f-heading:"Bellfort", "Open Sans", sans-serif;
-  --f-body:"Open Sans", -apple-system, "Segoe UI", sans-serif;
+  --f-display:"Manrope", Georgia, serif;
+  --f-script:"Manrope", cursive;
+  --f-draws:"Manrope", Georgia, serif;
+  --f-heading:"Manrope", "Open Sans", sans-serif;
+  --f-body:"Manrope", -apple-system, "Segoe UI", sans-serif;
   --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
 
@@ -642,6 +642,20 @@ h1,h2,h3,h4{font-family:var(--f-heading); color:var(--marrom-esc); margin:0 0 4p
 p{margin:0;}
 button{font-family:var(--f-body); cursor:pointer;}
 input,select,textarea{font-family:var(--f-body);}
+input[type="checkbox"]{
+  appearance:none; -webkit-appearance:none; width:18px; height:18px; min-width:18px;
+  border:1.6px solid var(--areia-cla); border-radius:6px; background:var(--branco);
+  cursor:pointer; position:relative; margin:0; vertical-align:middle;
+  transition:background .15s, border-color .15s;
+}
+input[type="checkbox"]:hover{border-color:var(--verde-viv);}
+input[type="checkbox"]:checked{background:var(--verde-esc); border-color:var(--verde-esc);}
+input[type="checkbox"]:checked::after{
+  content:""; position:absolute; left:5px; top:1px; width:5px; height:9px;
+  border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg);
+}
+input[type="checkbox"]:focus-visible{outline:2px solid var(--verde-viv); outline-offset:2px;}
+input[type="radio"]{accent-color:var(--verde-esc); width:16px; height:16px; cursor:pointer;}
 ::selection{background:var(--verde-viv); color:#fff;}
 a{color:var(--verde-esc);}
 
@@ -723,16 +737,16 @@ a{color:var(--verde-esc);}
 .field input:focus, .field select:focus, .field textarea:focus{outline:none; border-color:var(--verde-viv); box-shadow:0 0 0 3px rgba(0,178,98,.15);}
 .field textarea{resize:vertical;}
 .btn-primary{
-  width:100%; padding:13px; border:none; border-radius:10px;
+  width:100%; padding:13px; border:none; border-radius:11px;
   background:linear-gradient(135deg, var(--verde-viv), var(--verde-esc));
-  color:#fff; font-weight:700; font-size:15px; letter-spacing:.3px;
-  box-shadow:0 6px 16px rgba(0,115,63,.30);
+  color:#fff; font-weight:700; font-size:15px; letter-spacing:.2px;
+  box-shadow:0 6px 16px rgba(47,82,51,.24);
   transition:transform .12s, box-shadow .12s;
 }
-.btn-primary:hover{transform:translateY(-1px); box-shadow:0 8px 20px rgba(0,115,63,.38);}
+.btn-primary:hover{transform:translateY(-1px); box-shadow:0 8px 20px rgba(47,82,51,.30);}
 .btn-primary:active{transform:translateY(0);}
 .login-error{
-  background:#fdecec; border:1px solid var(--vermelho); color:var(--vinho);
+  background:#FBEAE3; border:1px solid var(--vermelho); color:var(--vinho);
   padding:9px 12px; border-radius:8px; font-size:13px; margin-bottom:14px; display:none;
 }
 
@@ -745,56 +759,58 @@ a{color:var(--verde-esc);}
   gap:16px; flex-wrap:wrap;
   background:var(--branco);
   border-bottom:1px solid var(--areia-cla);
-  padding:14px 34px;
+  padding:15px 38px;
 }
 .brand-block{display:flex; align-items:center; gap:12px;}
 .brand-block .ic-lemon{flex:none; display:flex; align-items:center;}
 .brand-block .ic-lemon svg{width:40px; height:36px; display:block;}
 .brand-block .ic-hortifruti{flex:none; display:flex; align-items:center; padding-left:10px; border-left:1px solid var(--areia-cla);}
 .brand-block .ic-hortifruti img, .brand-block .ic-hortifruti svg{height:26px; width:auto; display:block;}
-.brand-block h1{font-family:var(--f-heading); font-size:19px; color:var(--marrom-esc); margin:0; line-height:1.1;}
-.brand-block .sub{font-family:var(--f-mono); font-size:11px; text-transform:uppercase; letter-spacing:.4px; color:var(--areia-esc);}
+.brand-block h1{font-family:var(--f-heading); font-weight:800; font-size:18px; color:var(--marrom-esc); margin:0; line-height:1.1; letter-spacing:-.2px;}
+.brand-block .sub{font-family:var(--f-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.5px; color:var(--areia-esc);}
 .header-actions{display:flex; align-items:center; gap:16px;}
 .userbox{display:flex; align-items:center; gap:10px;}
-.avatar{width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,var(--ambar),var(--laranja)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#5b3200; flex:none; font-size:13px;}
+.avatar{width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,var(--terracota),var(--laranja)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#fff; flex:none; font-size:13px;}
 .userbox .un{font-size:13px; font-weight:700; color:var(--marrom-esc); line-height:1.2;}
 .userbox .role{font-size:11px; color:var(--areia-esc); font-family:var(--f-mono);}
-.btn-logout{background:var(--branco); border:1.5px solid var(--areia-esc); color:var(--marrom-esc); padding:8px 16px; border-radius:8px; font-size:12.5px; font-weight:700;}
+.btn-logout{background:var(--branco); border:1.5px solid var(--areia-cla); color:var(--marrom-esc); padding:8px 16px; border-radius:9px; font-size:12.5px; font-weight:700; transition:background .15s, border-color .15s, color .15s;}
 .btn-logout:hover{background:var(--vermelho); border-color:var(--vermelho); color:#fff;}
 
 .app-tabs{
-  display:flex; gap:6px; flex-wrap:wrap;
+  display:flex; gap:4px; flex-wrap:wrap;
   background:var(--branco);
   border-bottom:1px solid var(--areia-cla);
-  padding:0 30px;
+  padding:8px 34px;
 }
 .nav-item{
-  display:flex; align-items:center; gap:8px;
-  padding:13px 14px; text-decoration:none;
-  font-family:var(--f-mono);
-  font-size:12.5px; font-weight:600; text-transform:uppercase; letter-spacing:.3px;
+  display:flex; align-items:center; gap:7px;
+  padding:9px 15px; text-decoration:none; border-radius:9px;
+  font-family:var(--f-body);
+  font-size:13px; font-weight:600; letter-spacing:0; text-transform:none;
   color:var(--areia-esc);
-  border-bottom:3px solid transparent;
+  border-bottom:none;
+  transition:background .15s, color .15s;
 }
 .nav-item .ic{font-size:14px; display:flex; align-items:center;}
-.nav-item:hover{color:var(--marrom-esc);}
-.nav-item.active{color:var(--verde-esc); border-bottom-color:var(--verde-viv);}
+.nav-item:hover{color:var(--marrom-esc); background:var(--creme);}
+.nav-item.active{color:#fff; background:var(--verde-esc);}
 
-.content{padding:26px 34px; overflow-x:hidden;}
-.topbar{display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; flex-wrap:wrap; gap:12px;}
-.topbar .eyebrow{font-family:var(--f-mono); text-transform:uppercase; letter-spacing:.5px; color:var(--areia-esc); font-size:11.5px; display:block; margin-bottom:2px;}
-.topbar h2{font-size:24px;}
-.pill{display:inline-flex; align-items:center; gap:6px; background:var(--branco); border:1px solid var(--areia-cla); padding:8px 13px; border-radius:8px; font-family:var(--f-mono); font-size:12px; font-weight:600; color:var(--marrom-esc);}
+.content{padding:30px 38px; overflow-x:hidden;}
+.topbar{display:flex; align-items:center; justify-content:space-between; margin-bottom:26px; flex-wrap:wrap; gap:12px;}
+.topbar .eyebrow{font-family:var(--f-mono); text-transform:uppercase; letter-spacing:.6px; color:var(--areia-esc); font-size:11px; display:block; margin-bottom:3px;}
+.topbar h2{font-size:23px; font-weight:800; letter-spacing:-.2px;}
+.pill{display:inline-flex; align-items:center; gap:6px; background:var(--branco); border:1px solid var(--areia-cla); padding:8px 13px; border-radius:10px; font-family:var(--f-mono); font-size:12px; font-weight:600; color:var(--marrom-esc); box-shadow:var(--sombra);}
 
 .view{display:none;}
 .view.active{display:block;}
 
 /* ---- Cards / KPIs ---- */
-.kpi-row{display:grid; grid-template-columns:repeat(5,1fr); gap:16px; margin-bottom:20px;}
-.kpi{background:var(--branco); border:1px solid var(--areia-cla); border-radius:12px; padding:18px 20px;}
-.kpi .lbl{font-family:var(--f-mono); font-size:11px; text-transform:uppercase; letter-spacing:.4px; font-weight:600; color:var(--areia-esc);}
-.kpi .val{font-family:var(--f-heading); font-size:28px; font-weight:700; color:var(--marrom-esc); margin-top:8px;}
-.kpi .foot{font-family:var(--f-mono); font-size:11px; color:var(--areia-esc); margin-top:4px; display:block;}
+.kpi-row{display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-bottom:22px;}
+.kpi{background:var(--branco); border:1px solid var(--areia-cla); border-radius:14px; padding:18px 20px; box-shadow:var(--sombra); transition:box-shadow .15s, transform .15s;}
+.kpi:hover{box-shadow:var(--sombra-forte); transform:translateY(-1px);}
+.kpi .lbl{font-family:var(--f-mono); font-size:10.5px; text-transform:uppercase; letter-spacing:.5px; font-weight:600; color:var(--areia-esc);}
+.kpi .val{font-family:var(--f-heading); font-size:27px; font-weight:800; color:var(--marrom-esc); margin-top:7px; letter-spacing:-.3px;}
+.kpi .foot{font-family:var(--f-mono); font-size:10.5px; color:var(--areia-esc); margin-top:5px; display:block;}
 .kpi.k1 .val{color:var(--marrom-esc);}
 .kpi.k2 .val{color:var(--terracota);}
 .kpi.k3 .val{color:var(--ambar);}
@@ -802,10 +818,10 @@ a{color:var(--verde-esc);}
 .kpi.k5 .val{color:var(--vinho);}
 
 /* ---- Termômetro de segurança (elemento assinatura) ---- */
-.thermo-card{background:var(--branco); border:1px solid var(--areia-cla); border-radius:12px; padding:20px 22px; margin-bottom:22px;}
-.thermo-card h3{font-size:15px; margin-bottom:2px;}
+.thermo-card{background:var(--branco); border:1px solid var(--areia-cla); border-radius:14px; padding:20px 22px; margin-bottom:22px; box-shadow:var(--sombra);}
+.thermo-card h3{font-size:14.5px; margin-bottom:2px; font-weight:700;}
 .thermo-card .desc{font-size:12.5px; color:var(--areia-esc); display:block; margin-bottom:14px;}
-.thermo-track{display:flex; height:26px; border-radius:8px; overflow:hidden; border:1px solid var(--areia-cla);}
+.thermo-track{display:flex; height:24px; border-radius:8px; overflow:hidden; border:1px solid var(--areia-cla);}
 .thermo-seg{display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff; min-width:0; white-space:nowrap; overflow:hidden;}
 .thermo-legend{display:flex; flex-wrap:wrap; gap:14px; margin-top:12px;}
 
@@ -819,18 +835,19 @@ a{color:var(--verde-esc);}
 .thermo-legend .dot{width:10px; height:10px; border-radius:3px;}
 
 /* ---- filtros ---- */
-.filters{display:flex; gap:12px; flex-wrap:wrap; background:var(--branco); border:1px solid var(--areia-cla); border-radius:12px; padding:14px 16px; margin-bottom:20px; align-items:flex-end;}
-.filters .f-group{display:flex; flex-direction:column; gap:5px;}
-.filters label{font-family:var(--f-mono); font-size:10.5px; font-weight:600; text-transform:uppercase; letter-spacing:.4px; color:var(--areia-esc);}
-.filters select, .filters input{padding:8px 10px; border-radius:8px; border:1.5px solid var(--areia-cla); font-size:13px; background:#fdfaf5; min-width:150px;}
-.filters .btn-clear{background:var(--areia-cla); border:none; padding:9px 14px; border-radius:8px; font-size:12.5px; font-weight:700; color:var(--marrom-esc);}
+.filters{display:flex; gap:12px; flex-wrap:wrap; background:var(--branco); border:1px solid var(--areia-cla); border-radius:14px; padding:15px 18px; margin-bottom:22px; align-items:flex-end; box-shadow:var(--sombra);}
+.filters .f-group{display:flex; flex-direction:column; gap:6px;}
+.filters label{font-family:var(--f-mono); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; color:var(--areia-esc);}
+.filters select, .filters input{padding:8px 11px; border-radius:9px; border:1.5px solid var(--areia-cla); font-size:13px; background:var(--creme); min-width:150px; transition:border-color .15s;}
+.filters select:focus, .filters input:focus{outline:none; border-color:var(--verde-viv);}
+.filters .btn-clear{background:var(--areia-cla); border:none; padding:9px 15px; border-radius:9px; font-size:12.5px; font-weight:700; color:var(--marrom-esc); transition:background .15s;}
 .filters .btn-clear:hover{background:var(--areia-esc); color:#fff;}
 
 /* ---- grid de gráficos ---- */
-.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;}
-.grid-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin-bottom:18px;}
-.card{background:var(--branco); border:1px solid var(--areia-cla); border-radius:12px; padding:18px 20px; position:relative;}
-.card h3{font-family:var(--f-mono); font-size:12.5px; text-transform:uppercase; letter-spacing:.4px; color:var(--marrom-esc); margin-bottom:2px;}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;}
+.grid-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; margin-bottom:16px;}
+.card{background:var(--branco); border:1px solid var(--areia-cla); border-radius:14px; padding:19px 21px; position:relative; box-shadow:var(--sombra);}
+.card h3{font-family:var(--f-heading); font-weight:700; font-size:14.5px; letter-spacing:0; text-transform:none; color:var(--marrom-esc); margin-bottom:2px;}
 .card .sub{font-size:12px; color:var(--areia-esc); display:block; margin-bottom:12px;}
 .card canvas{max-height:230px;}
 .card.tall canvas{max-height:290px;}
@@ -838,16 +855,16 @@ a{color:var(--verde-esc);}
 /* ---- tabelas ---- */
 table{width:100%; border-collapse:collapse; font-size:13px;}
 thead th{
-  text-align:left; padding:10px 12px; background:var(--areia-cla); color:var(--marrom-esc);
-  font-size:11.5px; text-transform:uppercase; letter-spacing:.3px; font-weight:700;
-  position:sticky; top:0;
+  text-align:left; padding:11px 12px; background:var(--creme); color:var(--areia-esc);
+  font-size:10.5px; text-transform:uppercase; letter-spacing:.4px; font-weight:700;
+  position:sticky; top:0; border-bottom:1.5px solid var(--areia-cla);
 }
 thead th:first-child{border-radius:8px 0 0 8px;}
 thead th:last-child{border-radius:0 8px 8px 0;}
-tbody td{padding:10px 12px; border-bottom:1px solid #f1e6d6;}
-tbody tr:hover{background:#fbf6ee;}
+tbody td{padding:11px 12px; border-bottom:1px solid var(--areia-cla);}
+tbody tr:hover{background:var(--creme);}
 .table-wrap{max-height:360px; overflow:auto; border-radius:10px;}
-.badge{display:inline-block; padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700; color:#fff;}
+.badge{display:inline-block; padding:3px 11px; border-radius:20px; font-size:10.5px; font-weight:700; color:#fff;}
 .badge.sem{background:var(--verde-viv);}
 .badge.com{background:var(--ambar); color:#4a2e00;}
 .badge.com2{background:var(--laranja);}
@@ -1076,10 +1093,24 @@ table.fe-tabela-epi td.fe-desc{text-align:left;}
 .tabela-demandas tbody tr:nth-child(even){background:#fbf8f2;}
 .tabela-demandas tbody tr:hover{background:#eef5f0;}
 .tabela-demandas tbody tr:hover td.col-sticky{background:#eef5f0;}
-.tabela-demandas td.col-sticky{position:sticky; left:0; z-index:1; background:inherit; font-weight:600; min-width:340px; max-width:420px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; box-shadow:2px 0 4px rgba(0,0,0,.04);}
+.tabela-demandas td.col-sticky{position:sticky; left:0; z-index:1; background:inherit; font-weight:600; min-width:340px; max-width:420px; overflow:hidden; white-space:normal; padding-top:10px; padding-bottom:10px; box-shadow:2px 0 4px rgba(0,0,0,.04);}
+.tabela-demandas td.col-sticky .jira-issue-title{overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical;}
 .tabela-demandas tbody tr:nth-child(odd) td.col-sticky{background:var(--branco);}
 .tabela-demandas tbody tr:nth-child(even) td.col-sticky{background:#fbf8f2;}
 .td-badge{font-family:var(--f-mono); font-size:8.5px; padding:2px 6px; border-radius:20px; text-transform:uppercase; letter-spacing:.2px; color:#fff; white-space:nowrap;}
+
+/* ---- estilo Jira: chip de status, avatar de linha, prioridade ---- */
+.jira-status-chip{display:inline-flex; align-items:center; font-family:var(--f-body); font-size:11px; font-weight:700; padding:3px 10px; border-radius:4px; text-transform:none; letter-spacing:0; color:#fff; white-space:nowrap;}
+.jira-issue-key{font-family:var(--f-mono); font-size:10.5px; font-weight:700; color:var(--areia-esc); white-space:nowrap;}
+.jira-issue-title{display:block; font-size:13px; font-weight:600; color:var(--marrom-esc); line-height:1.3; margin-top:1px;}
+.jira-type-dot{display:inline-block; width:7px; height:7px; border-radius:2px; margin-right:6px; flex:none;}
+.jira-avatar-row{display:inline-flex; align-items:center; gap:7px; white-space:nowrap;}
+.jira-avatar-row .av{width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:800; color:#fff; flex:none;}
+.jira-prioridade{display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:var(--marrom-esc);}
+.jira-prioridade .flag{display:inline-block; width:0; height:0; border-style:solid;}
+.jira-prioridade .flag.alta{border-width:0 5px 9px 5px; border-color:transparent transparent var(--vermelho) transparent;}
+.jira-prioridade .flag.normal{border-width:0 5px 9px 5px; border-color:transparent transparent var(--ambar) transparent;}
+.jira-prioridade .flag.baixa{border-width:9px 5px 0 5px; border-color:var(--verde-viv) transparent transparent transparent;}
 .lista-vazio{padding:50px 20px; text-align:center; color:var(--areia-esc);}
 .lista-vazio b{display:block; color:var(--marrom-esc); font-size:13.5px; margin-bottom:6px;}
 
@@ -1959,6 +1990,7 @@ table.fe-tabela-epi td.fe-desc{text-align:left;}
         <div class="insp-subnav">
           <button type="button" class="insp-tab active" data-sub="ativas" onclick="mostrarSubDemandas('ativas')">Ativas</button>
           <button type="button" class="insp-tab" data-sub="concluidas" onclick="mostrarSubDemandas('concluidas')">Concluídas</button>
+          <button type="button" class="insp-tab" data-sub="atraso" id="tab-dem-atraso" onclick="mostrarSubDemandas('atraso')" style="display:none;">Em Atraso</button>
           <button type="button" class="insp-tab" data-sub="indicadores" id="tab-dem-indicadores" onclick="mostrarSubDemandas('indicadores')" style="display:none;">Indicadores</button>
         </div>
 
@@ -1966,6 +1998,8 @@ table.fe-tabela-epi td.fe-desc{text-align:left;}
         <div class="insp-sub active" id="demandas-sub-ativas">
           <div class="filters">
             <div class="f-group"><label>Categoria</label><select id="dem-f-categoria"><option value="">Todas</option></select></div>
+            <div class="f-group"><label>Área</label><select id="dem-f-area"><option value="">Todas</option></select></div>
+            <div class="f-group"><label>Tipo de atividade</label><select id="dem-f-tipo-atividade"><option value="">Todos</option></select></div>
             <div class="f-group"><label>Tipo de demanda</label><select id="dem-f-tipo"><option value="">Todos</option></select></div>
             <div class="f-group"><label>Prioridade</label><select id="dem-f-prioridade"><option value="">Todas</option><option>Alta</option><option>Normal</option><option>Baixa</option></select></div>
             <div class="f-group"><label>Status</label><select id="dem-f-etapa"><option value="">Todos</option></select></div>
@@ -1982,6 +2016,8 @@ table.fe-tabela-epi td.fe-desc{text-align:left;}
                     <tr id="tr-cabecalho-demandas">
                       <th class="col-sticky" onclick="ordenarListaDemandas('demanda')">Demanda</th>
                       <th onclick="ordenarListaDemandas('categoria')">Categoria</th>
+                      <th onclick="ordenarListaDemandas('area')">Área</th>
+                      <th onclick="ordenarListaDemandas('tipoAtividade')">Tipo de atividade</th>
                       <th onclick="ordenarListaDemandas('tipoDemanda')">Tipo de demanda</th>
                       <th onclick="ordenarListaDemandas('prioridade')">Prioridade</th>
                       <th onclick="ordenarListaDemandas('status')">Status</th>
@@ -2029,12 +2065,30 @@ table.fe-tabela-epi td.fe-desc{text-align:left;}
         </div>
 
         <!-- INDICADORES (somente admin/coordenador) -->
+        <div class="insp-sub" id="demandas-sub-atraso">
+          <span class="sub" style="display:block; margin-bottom:14px;">Demandas ativas que já passaram da data limite de entrega.</span>
+          <div class="kpi-row">
+            <div class="kpi k4"><div class="lbl">Total em atraso</div><div class="val" id="dka-total">0</div><span class="foot">Demandas ativas vencidas</span></div>
+            <div class="kpi k5"><div class="lbl">Média de dias em atraso</div><div class="val" id="dka-media-dias">0</div><span class="foot">Considerando todas as vencidas</span></div>
+            <div class="kpi k2"><div class="lbl">Mais crítica</div><div class="val" id="dka-maior-atraso" style="font-size:20px;">—</div><span class="foot">Maior número de dias vencidos</span></div>
+          </div>
+          <div class="card">
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Demanda</th><th>Categoria</th><th>Área</th><th>Responsável</th><th>Data limite</th><th>Dias de atraso</th></tr></thead>
+                <tbody id="tbl-dem-atraso"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
         <div class="insp-sub" id="demandas-sub-indicadores">
           <div class="kpi-row">
             <div class="kpi k1"><div class="lbl">Demandas ativas</div><div class="val" id="dki-total-ativas">0</div><span class="foot">Em andamento no momento</span></div>
             <div class="kpi k2"><div class="lbl">Concluídas</div><div class="val" id="dki-total-concluidas">0</div><span class="foot">No total já finalizadas</span></div>
-            <div class="kpi k4"><div class="lbl">Em atraso</div><div class="val" id="dki-em-atraso">0</div><span class="foot">Passaram da data limite</span></div>
+            <div class="kpi k4"><div class="lbl">Em atraso</div><div class="val" id="dki-em-atraso">0</div><span class="foot" style="cursor:pointer; text-decoration:underline;" onclick="mostrarSubDemandas('atraso')">Ver detalhes ›</span></div>
             <div class="kpi k5"><div class="lbl">Aguardando qualidade</div><div class="val" id="dki-aguardando-qualidade">0</div><span class="foot">Em análise ou reprovadas</span></div>
+            <div class="kpi k2"><div class="lbl">Tempo médio de resolução</div><div class="val" id="dki-tempo-medio">0</div><span class="foot">Dias entre entrada e entrega</span></div>
           </div>
           <div class="grid-2">
             <div class="card tall">
@@ -2049,6 +2103,16 @@ table.fe-tabela-epi td.fe-desc{text-align:left;}
           </div>
           <div class="grid-2">
             <div class="card tall">
+              <h3>Demandas por área (SESMT)</h3>
+              <canvas id="chart-dem-area"></canvas>
+            </div>
+            <div class="card tall">
+              <h3>Demandas por tipo de atividade</h3>
+              <canvas id="chart-dem-tipo-atividade"></canvas>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="card tall">
               <h3>Demandas por prioridade</h3>
               <canvas id="chart-dem-prioridade"></canvas>
             </div>
@@ -2057,14 +2121,10 @@ table.fe-tabela-epi td.fe-desc{text-align:left;}
               <canvas id="chart-dem-status"></canvas>
             </div>
           </div>
-          <div class="section-title"><span>Demandas em atraso</span><div class="ln"></div></div>
-          <div class="card">
-            <div class="table-wrap">
-              <table>
-                <thead><tr><th>Demanda</th><th>Responsável</th><th>Data limite</th><th>Dias de atraso</th></tr></thead>
-                <tbody id="tbl-dem-atraso"></tbody>
-              </table>
-            </div>
+          <div class="card tall" style="margin-top:0;">
+            <h3>Criadas × Concluídas por mês</h3>
+            <span class="sub">Últimos 6 meses</span>
+            <canvas id="chart-dem-tendencia"></canvas>
           </div>
         </div>
       </section>
@@ -2450,6 +2510,19 @@ table.fe-tabela-epi td.fe-desc{text-align:left;}
               <div class="estrutura-lista" id="lista-dem-categoria"></div>
             </div>
             <div class="card">
+              <h3>Área dentro do SESMT</h3>
+              <span class="sub" style="display:block; margin-bottom:8px;">ex.: Saúde, Segurança, Gestão</span>
+              <div class="insp-add-item"><input type="text" id="novo-item-dem-area" placeholder="ex.: Saúde" onkeydown="if(event.key==='Enter'){event.preventDefault();addOpcaoDemanda('area');}"><button type="button" class="btn-secondary" onclick="addOpcaoDemanda('area')">+ Adicionar</button></div>
+              <div class="estrutura-lista" id="lista-dem-area"></div>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Tipo de atividade</h3>
+              <div class="insp-add-item"><input type="text" id="novo-item-dem-tipo_atividade" placeholder="ex.: Visita técnica" onkeydown="if(event.key==='Enter'){event.preventDefault();addOpcaoDemanda('tipo_atividade');}"><button type="button" class="btn-secondary" onclick="addOpcaoDemanda('tipo_atividade')">+ Adicionar</button></div>
+              <div class="estrutura-lista" id="lista-dem-tipo_atividade"></div>
+            </div>
+            <div class="card">
               <h3>Prioridades</h3>
               <span class="sub" style="display:block; margin-bottom:8px;">Fixas na plataforma: Alta, Normal e Baixa.</span>
             </div>
@@ -2757,6 +2830,10 @@ table.fe-tabela-epi td.fe-desc{text-align:left;}
         <div class="field campo-admin"><label>Categoria</label><select id="dem-categoria"></select></div>
         <div class="field campo-admin"><label>Tipo de demanda</label><select id="dem-tipo" onchange="aoTrocarTipoDemanda()"></select></div>
         <div class="field campo-admin"><label>Prioridade</label><select id="dem-prioridade"><option>Normal</option><option>Alta</option><option>Baixa</option></select></div>
+      </div>
+      <div class="insp-header-grid">
+        <div class="field campo-admin"><label>Área (SESMT)</label><select id="dem-area"><option value="">Selecione</option></select></div>
+        <div class="field campo-admin"><label>Tipo de atividade</label><select id="dem-tipo-atividade"><option value="">Selecione</option></select></div>
       </div>
       <span class="sub" id="dem-fluxo-auto-info" style="display:block; margin:-4px 0 10px;">O fluxo (etapas) é definido automaticamente pelo tipo de demanda escolhido.</span>
 
@@ -3329,7 +3406,7 @@ function mapFichaFromDb(r){
 function mapDemandaFromDb(r){
   return {
     id:r.id, dataEntrada:r.data_entrada, dataLimite:r.data_limite, tempoEstimado:r.tempo_estimado||"",
-    categoria:r.categoria, tipoDemanda:r.tipo_demanda, prioridade:r.prioridade,
+    categoria:r.categoria, tipoDemanda:r.tipo_demanda, prioridade:r.prioridade, area:r.area||"", tipoAtividade:r.tipo_atividade||"",
     demanda:r.demanda, fluxoId:r.fluxo_id, etapaId:r.etapa_id,
     aguardandoItem:r.aguardando_item||"", aguardandoResponsavel:r.aguardando_responsavel||"",
     unidade:r.unidade||"", responsavel:r.responsavel||"", responsavelUsuarioId:r.responsavel_usuario_id,
@@ -3344,7 +3421,7 @@ function mapDemandaFromDb(r){
 function demandaToDb(d){
   return {
     data_entrada:d.dataEntrada||null, data_limite:d.dataLimite||null, tempo_estimado:d.tempoEstimado,
-    categoria:d.categoria, tipo_demanda:d.tipoDemanda, prioridade:d.prioridade,
+    categoria:d.categoria, tipo_demanda:d.tipoDemanda, prioridade:d.prioridade, area:d.area||null, tipo_atividade:d.tipoAtividade||null,
     demanda:d.demanda, fluxo_id:d.fluxoId, etapa_id:d.etapaId,
     aguardando_item:d.aguardandoItem, aguardando_responsavel:d.aguardandoResponsavel,
     unidade:d.unidade, responsavel:d.responsavel, responsavel_usuario_id:d.responsavelUsuarioId||null,
@@ -3414,7 +3491,7 @@ async function carregarDadosDoSupabase(){
   DEMANDAS = (rDem.data||[]).map(mapDemandaFromDb);
   FLUXOS = (rFlu.data||[]).map(f=>({id:f.id, nome:f.nome, padrao:f.padrao}));
   FLUXO_ETAPAS = (rEta.data||[]).map(e=>({id:e.id, fluxoId:e.fluxo_id, nome:e.nome, ordem:e.ordem, cor:e.cor}));
-  DEMANDAS_OPCOES = {categoria:[]};
+  DEMANDAS_OPCOES = {categoria:[], area:[], tipo_atividade:[]};
   (rOpc.data||[]).forEach(o=>{ if(DEMANDAS_OPCOES[o.tipo]) DEMANDAS_OPCOES[o.tipo].push(o.valor); });
   DEMANDAS_TIPOS_CONFIG = (rTipCfg.data||[]).map(t=>({id:t.id, nome:t.nome, fluxoId:t.fluxo_id, tempoEstimadoHoras:t.tempo_estimado_horas, requerAnaliseQualidade:!!t.requer_analise_qualidade}));
   CHECKLIST_GRUPOS = (rChkGrp.data||[]).map(g=>({id:g.id, nome:g.nome, ordem:g.ordem}));
@@ -4037,7 +4114,7 @@ const ICONE_PAUSE = '<svg viewBox="0 0 24 24" width="13" height="13" fill="curre
 let DEMANDAS = [];
 let FLUXOS = [];
 let FLUXO_ETAPAS = [];
-let DEMANDAS_OPCOES = {categoria:[]};
+let DEMANDAS_OPCOES = {categoria:[], area:[], tipo_atividade:[]};
 let DEMANDAS_TIPOS_CONFIG = [];
 let CHECKLIST_GRUPOS = [];
 let CHECKLIST_ITENS_CONFIG = [];
@@ -4507,10 +4584,14 @@ function initDemandas(){
   aplicarPermissaoCriacaoDemandas();
   const tabIndicadores = document.getElementById("tab-dem-indicadores");
   if(tabIndicadores) tabIndicadores.style.display = ehAdminOuCoordenador() ? "inline-block" : "none";
+  const tabAtraso = document.getElementById("tab-dem-atraso");
+  if(tabAtraso) tabAtraso.style.display = ehAdminOuCoordenador() ? "inline-block" : "none";
   renderVisaoAtivaDemandas();
 }
 function popularFiltrosDemandas(){
   fillSelect("dem-f-categoria", DEMANDAS_OPCOES.categoria||[]);
+  fillSelect("dem-f-area", DEMANDAS_OPCOES.area||[]);
+  fillSelect("dem-f-tipo-atividade", DEMANDAS_OPCOES.tipo_atividade||[]);
   fillSelect("dem-f-tipo", DEMANDAS_TIPOS_CONFIG.map(t=>t.nome));
   fillSelect("dem-f-etapa", [...new Set(FLUXO_ETAPAS.map(e=>e.nome))]);
   fillSelect("dem-f-unidade", UNIDADES.map(u=>u.nome));
@@ -4518,20 +4599,27 @@ function popularFiltrosDemandas(){
   fillSelect("dem-f-responsavel", respons);
 }
 function limparFiltrosDemandas(){
-  ["dem-f-categoria","dem-f-tipo","dem-f-prioridade","dem-f-etapa","dem-f-responsavel","dem-f-unidade"].forEach(id=>{
+  ["dem-f-categoria","dem-f-area","dem-f-tipo-atividade","dem-f-tipo","dem-f-prioridade","dem-f-etapa","dem-f-responsavel","dem-f-unidade"].forEach(id=>{
     const el = document.getElementById(id); if(el) el.value = "";
   });
   renderVisaoAtivaDemandas();
 }
-["dem-f-categoria","dem-f-tipo","dem-f-prioridade","dem-f-etapa","dem-f-responsavel","dem-f-unidade"].forEach(id=>{
+["dem-f-categoria","dem-f-area","dem-f-tipo-atividade","dem-f-tipo","dem-f-prioridade","dem-f-etapa","dem-f-responsavel","dem-f-unidade"].forEach(id=>{
   document.addEventListener("DOMContentLoaded", ()=>{
     const el = document.getElementById(id);
     if(el) el.addEventListener("change", renderVisaoAtivaDemandas);
   });
 });
 
-function calcularControlePrazo(dataLimite){
+function calcularControlePrazo(dataLimite, entregueEm){
   if(!dataLimite) return {label:"Sem prazo", cor:"#9f8167"};
+  if(entregueEm){
+    const limite = new Date(dataLimite+"T00:00:00");
+    const entrega = new Date(entregueEm+"T00:00:00");
+    const diasAtraso = Math.round((entrega-limite)/86400000);
+    if(diasAtraso > 0) return {label:"Entregue com "+diasAtraso+"d de atraso", cor:"#ee3135"};
+    return {label:"Entregue no prazo", cor:"#00b262"};
+  }
   const hoje = new Date(); hoje.setHours(0,0,0,0);
   const limite = new Date(dataLimite+"T00:00:00");
   const dias = Math.round((limite-hoje)/86400000);
@@ -4547,9 +4635,21 @@ function iniciaisTexto(nome){
   if(!nome) return "—";
   return nome.trim().split(/\s+/).slice(0,2).map(p=>p[0]).join("").toUpperCase();
 }
+const PALETA_AVATARES = ["#a15a33","#00733f","#a35e8e","#24a076","#f06650","#54412f","#9f8167","#54be95","#a35e8e","#f9b16b"];
+function corAvatarPorNome(nome){
+  if(!nome) return "#9f8167";
+  let hash = 0;
+  for(let i=0; i<nome.length; i++) hash = nome.charCodeAt(i) + ((hash<<5)-hash);
+  return PALETA_AVATARES[Math.abs(hash) % PALETA_AVATARES.length];
+}
+function corTipoDemanda(tipo){
+  return corAvatarPorNome(tipo||"—");
+}
 
 function dadosFiltradosDemandas(){
   const cat = document.getElementById("dem-f-categoria")?.value;
+  const area = document.getElementById("dem-f-area")?.value;
+  const tipoAtiv = document.getElementById("dem-f-tipo-atividade")?.value;
   const tipo = document.getElementById("dem-f-tipo")?.value;
   const prio = document.getElementById("dem-f-prioridade")?.value;
   const etapaNome = document.getElementById("dem-f-etapa")?.value;
@@ -4558,6 +4658,8 @@ function dadosFiltradosDemandas(){
   return DEMANDAS.filter(d=>{
     if(!ehAdminOuCoordenador() && d.responsavelUsuarioId !== (currentUser && currentUser.id)) return false;
     if(cat && d.categoria!==cat) return false;
+    if(area && d.area!==area) return false;
+    if(tipoAtiv && d.tipoAtividade!==tipoAtiv) return false;
     if(tipo && d.tipoDemanda!==tipo) return false;
     if(prio && d.prioridade!==prio) return false;
     if(etapaNome && nomeEtapaDemanda(d)!==etapaNome) return false;
@@ -4604,6 +4706,8 @@ function valorOrdenacaoDemanda(d, campo){
   switch(campo){
     case "demanda": return d.demanda||"";
     case "categoria": return d.categoria||"";
+    case "area": return d.area||"";
+    case "tipoAtividade": return d.tipoAtividade||"";
     case "tipoDemanda": return d.tipoDemanda||"";
     case "prioridade": return {Alta:0,Normal:1,Baixa:2}[d.prioridade] ?? 3;
     case "status": return nomeEtapaDemanda(d);
@@ -4629,17 +4733,23 @@ function valorOrdenacaoDemanda(d, campo){
   }
 }
 function linhaDemandaHtml(d){
-  const prazo = calcularControlePrazo(d.dataLimite);
+  const prazo = calcularControlePrazo(d.dataLimite, d.entregueEm);
   const mae = d.demandaMaeId ? DEMANDAS.find(x=>x.id===d.demandaMaeId) : null;
   const filhas = demandasFilhas(d);
   const dias = diasParaEntrega(d);
+  const prioClasse = d.prioridade==="Alta" ? "alta" : d.prioridade==="Baixa" ? "baixa" : "normal";
   return `<tr onclick="abrirModalDemanda(${d.id})">
-    <td class="col-sticky" title="${d.demanda}">#${d.id} — ${d.demanda}</td>
+    <td class="col-sticky" title="${d.demanda}">
+      <span class="jira-type-dot" style="background:${corTipoDemanda(d.tipoDemanda)};"></span><span class="jira-issue-key">#${d.id}</span>
+      <span class="jira-issue-title">${d.demanda}</span>
+    </td>
     <td>${d.categoria || "—"}</td>
+    <td>${d.area || "—"}</td>
+    <td>${d.tipoAtividade || "—"}</td>
     <td>${d.tipoDemanda || "—"}</td>
-    <td><span class="td-badge" style="background:${corPrioridade(d.prioridade)};">${d.prioridade}</span></td>
-    <td><span class="td-badge" style="background:${corEtapaDemanda(d)};">${nomeEtapaDemanda(d)}</span></td>
-    <td><span class="td-badge" style="background:${prazo.cor};">${prazo.label}</span></td>
+    <td><span class="jira-prioridade"><span class="flag ${prioClasse}"></span>${d.prioridade}</span></td>
+    <td><span class="jira-status-chip" style="background:${corEtapaDemanda(d)};">${nomeEtapaDemanda(d)}</span></td>
+    <td><span class="jira-status-chip" style="background:${prazo.cor};">${prazo.label}</span></td>
     <td>${formatarDataBR(d.dataEntrada)}</td>
     <td>${formatarDataBR(d.dataLimite)}</td>
     <td>${dias!=null ? dias : "—"}</td>
@@ -4647,7 +4757,7 @@ function linhaDemandaHtml(d){
     <td>${d.aguardandoItem || "—"}</td>
     <td>${d.aguardandoResponsavel || "—"}</td>
     <td>${d.unidade || "—"}</td>
-    <td>${d.responsavel || "—"}</td>
+    <td>${d.responsavel ? `<span class="jira-avatar-row"><span class="av" style="background:${corAvatarPorNome(d.responsavel)};">${iniciaisTexto(d.responsavel)}</span>${d.responsavel}</span>` : "—"}</td>
     <td>${formatarDataBR(d.agendadoPara)}</td>
     <td>${formatarDataBR(d.entregueEm)}</td>
     <td>${d.satisfacaoEntrega || "—"}</td>
@@ -4679,7 +4789,7 @@ function renderListaDemandas(){
   if(!tbody) return;
   const linhas = ordenarLinhas(dadosFiltradosDemandas().filter(d=>!demandaConcluida(d)));
   if(!linhas.length){
-    tbody.innerHTML = `<tr><td colspan="24"><div class="lista-vazio"><b>Ainda não há demandas aqui</b>Ou você não tem nenhuma demanda ou as existentes não correspondem aos filtros atuais.</div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="26"><div class="lista-vazio"><b>Ainda não há demandas aqui</b>Ou você não tem nenhuma demanda ou as existentes não correspondem aos filtros atuais.</div></td></tr>`;
     return;
   }
   tbody.innerHTML = linhas.map(linhaDemandaHtml).join("");
@@ -4692,7 +4802,7 @@ function renderListaDemandasConcluidas(){
   if(!tbody) return;
   const linhas = ordenarLinhas(dadosFiltradosDemandas().filter(d=>demandaConcluida(d)));
   if(!linhas.length){
-    tbody.innerHTML = `<tr><td colspan="24"><div class="lista-vazio"><b>Nenhuma demanda concluída ainda</b>Assim que uma demanda for concluída, ela aparece aqui.</div></td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="26"><div class="lista-vazio"><b>Nenhuma demanda concluída ainda</b>Assim que uma demanda for concluída, ela aparece aqui.</div></td></tr>`;
     return;
   }
   tbody.innerHTML = linhas.map(linhaDemandaHtml).join("");
@@ -4704,6 +4814,7 @@ function mostrarSubDemandas(sub){
   document.getElementById("demandas-sub-"+sub).classList.add("active");
   if(sub==="ativas") renderListaDemandas();
   else if(sub==="concluidas") renderListaDemandasConcluidas();
+  else if(sub==="atraso") renderDemandasEmAtraso();
   else if(sub==="indicadores") renderIndicadoresDemandas();
 }
 function renderIndicadoresDemandas(){
@@ -4720,6 +4831,12 @@ function renderIndicadoresDemandas(){
   document.getElementById("dki-em-atraso").textContent = emAtraso.length;
   document.getElementById("dki-aguardando-qualidade").textContent = aguardandoQualidade.length;
 
+  const concluidasComDatas = concluidas.filter(d=>d.dataEntrada && d.entregueEm);
+  const tempoMedio = concluidasComDatas.length
+    ? concluidasComDatas.reduce((s,d)=>s+Math.max(0,(new Date(d.entregueEm)-new Date(d.dataEntrada))/86400000),0)/concluidasComDatas.length
+    : 0;
+  document.getElementById("dki-tempo-medio").textContent = tempoMedio ? tempoMedio.toFixed(1) : "—";
+
   const porResponsavel = {};
   ativas.forEach(d=>{ const nome = d.responsavel || "Sem responsável"; porResponsavel[nome] = (porResponsavel[nome]||0)+1; });
   const respOrdenado = Object.entries(porResponsavel).sort((a,b)=>b[1]-a[1]);
@@ -4735,6 +4852,23 @@ function renderIndicadoresDemandas(){
     type:"doughnut",
     data:{ labels:Object.keys(porCategoria), datasets:[{data:Object.values(porCategoria), backgroundColor:["#00733f","#faa61a","#a15a33","#a35e8e","#24a076","#f06650","#54412f","#9f8167"], borderWidth:2, borderColor:"#fffdfa"}]},
     options:{plugins:{legend:{position:"bottom", labels:{font:{size:10.5}}}}}
+  });
+
+  const porArea = {};
+  ativas.forEach(d=>{ const a = d.area || "Sem área"; porArea[a] = (porArea[a]||0)+1; });
+  criarChart("demArea", "chart-dem-area", {
+    type:"doughnut",
+    data:{ labels:Object.keys(porArea), datasets:[{data:Object.values(porArea), backgroundColor:["#a35e8e","#00733f","#faa61a","#9f8167","#f06650"], borderWidth:2, borderColor:"#fffdfa"}]},
+    options:{plugins:{legend:{position:"bottom", labels:{font:{size:10.5}}}}}
+  });
+
+  const porTipoAtividade = {};
+  ativas.forEach(d=>{ const t = d.tipoAtividade || "Sem tipo"; porTipoAtividade[t] = (porTipoAtividade[t]||0)+1; });
+  const tipoAtivOrdenado = Object.entries(porTipoAtividade).sort((a,b)=>b[1]-a[1]);
+  criarChart("demTipoAtividade", "chart-dem-tipo-atividade", {
+    type:"bar",
+    data:{ labels:tipoAtivOrdenado.map(t=>t[0]), datasets:[{label:"Demandas", data:tipoAtivOrdenado.map(t=>t[1]), backgroundColor:"#24a076", borderRadius:6}]},
+    options:{indexAxis:"y", plugins:{legend:{display:false}}, scales:{x:{beginAtZero:true, ticks:{precision:0}}}}
   });
 
   const porPrioridade = {Alta:0, Normal:0, Baixa:0};
@@ -4754,33 +4888,77 @@ function renderIndicadoresDemandas(){
     options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true, ticks:{precision:0}}}}
   });
 
+  const meses = [];
+  const base = new Date(); base.setDate(1);
+  for(let i=5; i>=0; i--){ const d = new Date(base.getFullYear(), base.getMonth()-i, 1); meses.push(d); }
+  const criadasPorMes = meses.map(m=>{
+    const chave = m.toISOString().slice(0,7);
+    return todas.filter(d=>d.dataEntrada && d.dataEntrada.slice(0,7)===chave).length;
+  });
+  const concluidasPorMes = meses.map(m=>{
+    const chave = m.toISOString().slice(0,7);
+    return todas.filter(d=>d.entregueEm && d.entregueEm.slice(0,7)===chave).length;
+  });
+  criarChart("demTendencia", "chart-dem-tendencia", {
+    type:"line",
+    data:{
+      labels: meses.map(m=>m.toLocaleDateString("pt-BR",{month:"short", year:"2-digit"})),
+      datasets:[
+        {label:"Criadas", data:criadasPorMes, borderColor:"#a15a33", backgroundColor:"#a15a33", tension:.3},
+        {label:"Concluídas", data:concluidasPorMes, borderColor:"#00733f", backgroundColor:"#00733f", tension:.3}
+      ]
+    },
+    options:{plugins:{legend:{position:"bottom"}}, scales:{y:{beginAtZero:true, ticks:{precision:0}}}}
+  });
+}
+function renderDemandasEmAtraso(){
+  const todas = DEMANDAS.slice();
+  const ativas = todas.filter(d=>!demandaConcluida(d));
+  const hoje = new Date().toISOString().slice(0,10);
+  const emAtraso = ativas.filter(d=>d.dataLimite && d.dataLimite<hoje)
+    .map(d=>({...d, diasAtraso: Math.round((new Date(hoje)-new Date(d.dataLimite+"T00:00:00"))/86400000)}))
+    .sort((a,b)=>b.diasAtraso-a.diasAtraso);
+
+  document.getElementById("dka-total").textContent = emAtraso.length;
+  const mediaDias = emAtraso.length ? (emAtraso.reduce((s,d)=>s+d.diasAtraso,0)/emAtraso.length) : 0;
+  document.getElementById("dka-media-dias").textContent = mediaDias ? mediaDias.toFixed(1) : "0";
+  document.getElementById("dka-maior-atraso").textContent = emAtraso.length ? ("#"+emAtraso[0].id+" — "+emAtraso[0].diasAtraso+"d") : "—";
+
   const tbAtraso = document.getElementById("tbl-dem-atraso");
   if(!emAtraso.length){
-    tbAtraso.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--areia-esc);padding:16px;">Nenhuma demanda em atraso.</td></tr>';
-  } else {
-    tbAtraso.innerHTML = emAtraso.sort((a,b)=>a.dataLimite<b.dataLimite?-1:1).map(d=>{
-      const dias = Math.round((new Date(hoje)-new Date(d.dataLimite+"T00:00:00"))/86400000);
-      return `<tr onclick="abrirModalDemanda(${d.id})" style="cursor:pointer;"><td>#${d.id} — ${d.demanda}</td><td>${d.responsavel||"—"}</td><td>${formatarDataBR(d.dataLimite)}</td><td><b style="color:var(--vermelho);">${dias}</b></td></tr>`;
-    }).join("");
+    tbAtraso.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--areia-esc);padding:16px;">Nenhuma demanda em atraso.</td></tr>';
+    return;
   }
+  tbAtraso.innerHTML = emAtraso.map(d=>{
+    return `<tr onclick="abrirModalDemanda(${d.id})" style="cursor:pointer;"><td>#${d.id} — ${d.demanda}</td><td>${d.categoria||"—"}</td><td>${d.area||"—"}</td><td>${d.responsavel||"—"}</td><td>${formatarDataBR(d.dataLimite)}</td><td><b style="color:var(--vermelho);">${d.diasAtraso}</b></td></tr>`;
+  }).join("");
 }
 function ehAdministrador(){ return !!currentUser && currentUser.perfil==="Administrador"; }
 function ehAdminOuCoordenador(){ return !!currentUser && (currentUser.perfil==="Administrador" || currentUser.perfil==="Coordenador"); }
 function ehResponsavelDaDemanda(d){ return !!currentUser && !!d && d.responsavelUsuarioId===currentUser.id; }
+function etapaSelecionadaEhConclusao(){
+  return !!document.getElementById("dem-entregue-em")?.value;
+}
 function aplicarPermissoesModalDemanda(d){
   const admin = ehAdministrador();
   const podeClassificar = true;
   const responsavel = ehResponsavelDaDemanda(d);
   const podeCampoResp = ehAdminOuCoordenador() || responsavel;
+  const concluida = etapaSelecionadaEhConclusao();
   document.querySelectorAll("#form-demanda .campo-admin input, #form-demanda .campo-admin select, #form-demanda .campo-admin textarea").forEach(el=>{ el.disabled = !podeClassificar; });
   document.querySelectorAll("#form-demanda .campo-resp input, #form-demanda .campo-resp select, #form-demanda .campo-resp textarea").forEach(el=>{ el.disabled = !podeCampoResp; });
-  document.getElementById("btn-entregar-demanda").disabled = !podeCampoResp;
+  const selEtapa = document.getElementById("dem-etapa");
+  if(selEtapa){
+    selEtapa.disabled = concluida ? true : !podeCampoResp;
+    selEtapa.title = concluida ? "Demanda concluída — status travado. Use \"Desfazer\" (Administrador) para reabrir." : "";
+  }
+  document.getElementById("btn-entregar-demanda").disabled = !podeCampoResp || concluida;
   const btnDesfazer = document.getElementById("btn-desfazer-entrega");
   if(btnDesfazer) btnDesfazer.style.display = admin ? "inline-block" : "none";
   document.querySelectorAll("#form-demanda .campo-aprovacao select").forEach(el=>{ el.disabled = !admin; });
   const btnTimer = document.getElementById("btn-timer-demanda");
-  btnTimer.disabled = !responsavel;
-  btnTimer.title = responsavel ? "" : "Somente o responsável pela demanda pode usar o cronômetro";
+  btnTimer.disabled = !responsavel || concluida;
+  btnTimer.title = concluida ? "Demanda concluída — cronômetro encerrado." : (responsavel ? "" : "Somente o responsável pela demanda pode usar o cronômetro");
 }
 function aplicarPermissaoCriacaoDemandas(){
   const btnNova = document.getElementById("btn-nova-demanda");
@@ -5168,7 +5346,10 @@ function atualizarDisplayEntrega(){
     btn.style.display = "inline-flex";
   }
 }
-function registrarEntregaDemanda(){
+async function registrarEntregaDemanda(){
+  if(sessaoAbertaModalAtual){
+    await toggleTimerDemanda();
+  }
   document.getElementById("dem-entregue-em").value = new Date().toISOString().slice(0,10);
   const fluxoId = Number(document.getElementById("dem-fluxo-id-atual").value) || null;
   const etapaConcluida = FLUXO_ETAPAS.find(e=>e.fluxoId===fluxoId && e.nome.toLowerCase().includes("conclu"));
@@ -5178,10 +5359,21 @@ function registrarEntregaDemanda(){
     mostrarToast("Entrega registrada. Não há etapa de conclusão nesse fluxo — ajuste o status manualmente.");
   }
   atualizarDisplayEntrega();
+  const demandaId = Number(document.getElementById("dem-id").value);
+  const demandaEmEdicao = DEMANDAS.find(x=>x.id===demandaId);
+  if(demandaEmEdicao) aplicarPermissoesModalDemanda(demandaEmEdicao);
 }
 function desfazerEntregaDemanda(){
   document.getElementById("dem-entregue-em").value = "";
+  const fluxoId = Number(document.getElementById("dem-fluxo-id-atual").value) || null;
+  const etapasDoFluxo = FLUXO_ETAPAS.filter(e=>e.fluxoId===fluxoId).sort((a,b)=>a.ordem-b.ordem);
+  const etapaReabertura = etapasDoFluxo.find(e=>!e.nome.toLowerCase().includes("conclu")) || etapasDoFluxo[0];
+  if(etapaReabertura) document.getElementById("dem-etapa").value = etapaReabertura.id;
   atualizarDisplayEntrega();
+  const demandaId = Number(document.getElementById("dem-id").value);
+  const demandaEmEdicao = DEMANDAS.find(x=>x.id===demandaId);
+  if(demandaEmEdicao) aplicarPermissoesModalDemanda(demandaEmEdicao);
+  mostrarToast("Entrega desfeita — status reaberto para ajuste.");
 }
 function validarAgendadoPara(){
   const agendado = document.getElementById("dem-agendado-para").value;
@@ -5212,6 +5404,8 @@ async function abrirModalDemanda(id, etapaIdPreDefinida){
   document.getElementById("dem-id").value = "";
   document.getElementById("dem-fluxo-id-atual").value = "";
   document.getElementById("dem-categoria").innerHTML = (DEMANDAS_OPCOES.categoria||[]).map(v=>`<option>${v}</option>`).join("");
+  document.getElementById("dem-area").innerHTML = '<option value="">Selecione</option>' + (DEMANDAS_OPCOES.area||[]).map(v=>`<option>${v}</option>`).join("");
+  document.getElementById("dem-tipo-atividade").innerHTML = '<option value="">Selecione</option>' + (DEMANDAS_OPCOES.tipo_atividade||[]).map(v=>`<option>${v}</option>`).join("");
   document.getElementById("dem-tipo").innerHTML = '<option value="">Selecione...</option>' + DEMANDAS_TIPOS_CONFIG.map(t=>`<option>${t.nome}</option>`).join("");
   document.getElementById("dem-unidade").innerHTML = '<option value="">—</option>' + UNIDADES.map(u=>`<option>${u.nome}</option>`).join("");
   document.getElementById("dem-responsavel").innerHTML = '<option value="">Selecione um usuário</option>' + USUARIOS.filter(u=>u.ativo!==false).map(u=>`<option value="${u.id}">${u.nome}</option>`).join("");
@@ -5226,6 +5420,8 @@ async function abrirModalDemanda(id, etapaIdPreDefinida){
     document.getElementById("dem-id").value = demandaAtual.id;
     document.getElementById("dem-descricao").value = demandaAtual.demanda||"";
     document.getElementById("dem-categoria").value = demandaAtual.categoria||"";
+    document.getElementById("dem-area").value = demandaAtual.area||"";
+    document.getElementById("dem-tipo-atividade").value = demandaAtual.tipoAtividade||"";
     document.getElementById("dem-tipo").value = demandaAtual.tipoDemanda||"";
     document.getElementById("dem-prioridade").value = demandaAtual.prioridade||"Normal";
     document.getElementById("dem-data-entrada").value = demandaAtual.dataEntrada||"";
@@ -5298,6 +5494,8 @@ async function salvarDemanda(ev){
   const dados = {
     demanda: document.getElementById("dem-descricao").value.trim(),
     categoria: document.getElementById("dem-categoria").value,
+    area: document.getElementById("dem-area").value,
+    tipoAtividade: document.getElementById("dem-tipo-atividade").value,
     tipoDemanda: document.getElementById("dem-tipo").value,
     prioridade: document.getElementById("dem-prioridade").value,
     dataEntrada: document.getElementById("dem-data-entrada").value,
@@ -5368,19 +5566,20 @@ async function removerDemanda(){
 
 /* ---- Gestão de Demandas: opções (categoria/tipo) e fluxos (colunas do Kanban) ---- */
 function renderOpcoesDemandas(){
-  const wrap = document.getElementById("lista-dem-categoria");
-  if(wrap){
-    const lista = DEMANDAS_OPCOES.categoria||[];
+  ["categoria","area","tipo_atividade"].forEach(tipo=>{
+    const wrap = document.getElementById("lista-dem-"+tipo);
+    if(!wrap) return;
+    const lista = DEMANDAS_OPCOES[tipo]||[];
     wrap.innerHTML = lista.length ? lista.map((v,idx)=>`
       <div class="admin-item-row">
         <span class="txt">${v}</span>
-        <button type="button" class="del-btn" onclick="removerOpcaoDemanda('categoria', ${idx})">Remover</button>
+        <button type="button" class="del-btn" onclick="removerOpcaoDemanda('${tipo}', ${idx})">Remover</button>
       </div>
     `).join("") : '<span class="estrutura-vazio">Nenhum item cadastrado.</span>';
-  }
+  });
 }
 async function addOpcaoDemanda(tipo){
-  const input = document.getElementById("novo-item-dem-categoria");
+  const input = document.getElementById("novo-item-dem-"+tipo);
   const valor = input.value.trim();
   if(!valor) return;
   if((DEMANDAS_OPCOES[tipo]||[]).includes(valor)){ mostrarToast("Esse item já está cadastrado."); return; }
@@ -5777,7 +5976,7 @@ async function gerarNotificacoesPrazoDemandas(){
   if(!currentUser) return;
   const minhas = DEMANDAS.filter(d=> d.responsavelUsuarioId===currentUser.id);
   for(const d of minhas){
-    const prazo = calcularControlePrazo(d.dataLimite);
+    const prazo = calcularControlePrazo(d.dataLimite, d.entregueEm);
     let tipo = null;
     if(prazo.label==="Atrasado") tipo = "demanda_atrasada";
     else if(prazo.label==="Vence hoje" || prazo.label==="Vence amanhã") tipo = "demanda_vencendo";
