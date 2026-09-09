@@ -4769,7 +4769,7 @@ function ehAdminOuCoordenador(){ return !!currentUser && (currentUser.perfil==="
 function ehResponsavelDaDemanda(d){ return !!currentUser && !!d && d.responsavelUsuarioId===currentUser.id; }
 function aplicarPermissoesModalDemanda(d){
   const admin = ehAdministrador();
-  const podeClassificar = ehAdminOuCoordenador();
+  const podeClassificar = true;
   const responsavel = ehResponsavelDaDemanda(d);
   const podeCampoResp = ehAdminOuCoordenador() || responsavel;
   document.querySelectorAll("#form-demanda .campo-admin input, #form-demanda .campo-admin select, #form-demanda .campo-admin textarea").forEach(el=>{ el.disabled = !podeClassificar; });
@@ -4783,9 +4783,8 @@ function aplicarPermissoesModalDemanda(d){
   btnTimer.title = responsavel ? "" : "Somente o responsável pela demanda pode usar o cronômetro";
 }
 function aplicarPermissaoCriacaoDemandas(){
-  const podeCriar = ehAdminOuCoordenador();
   const btnNova = document.getElementById("btn-nova-demanda");
-  if(btnNova) btnNova.style.display = podeCriar ? "inline-flex" : "none";
+  if(btnNova) btnNova.style.display = "inline-flex";
 }
 
 function formatarDuracao(seg){
@@ -5206,7 +5205,6 @@ function popularEtapasModalDemanda(){
   if(etapas.some(e=>String(e.id)===atual)) selEtapa.value = atual;
 }
 async function abrirModalDemanda(id, etapaIdPreDefinida){
-  if(!id && !ehAdminOuCoordenador()){ alert("Somente Administrador ou Coordenador podem criar novas demandas."); return; }
   if(timerIntervalIdDemanda){ clearInterval(timerIntervalIdDemanda); timerIntervalIdDemanda=null; }
   sessoesModalAtual = []; sessaoAbertaModalAtual = null;
 
